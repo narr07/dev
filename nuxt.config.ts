@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxt/eslint',
     '@nuxtjs/seo',
+    'nuxt-delay-hydration',
   ],
   eslint: {
     config: {
@@ -54,6 +55,23 @@ export default defineNuxtConfig({
 
     assets: {
       prefix: '/_fonts',
+    },
+  },
+  content: {
+    documentDriven: true,
+
+    navigation: {
+      fields: ['navTitle'],
+    },
+    markdown: {
+      anchorLinks: false,
+    },
+    highlight: {
+      theme: {
+        default: 'github-light',
+        dark: 'github-dark',
+      },
+      preload: ['json', 'js', 'ts', 'html', 'css', 'vue', 'diff', 'shell', 'markdown', 'yaml', 'bash', 'ini', 'c', 'cpp'],
     },
   },
 })
