@@ -29,17 +29,17 @@ export default defineNuxtConfig({
     families: [
       { name: 'Rubik',
         provider: 'google',
+
       },
       { name: 'Space Grotesk', provider: 'google' },
     ],
-    fallbacks: {
-      'serif': ['Times New Roman'],
-      'sans-serif': ['Arial'],
-      'monospace': ['Courier New'],
-
-    },
     defaults: {
+      fallbacks: {
+        'serif': ['Times New Roman'],
+        'sans-serif': ['Arial'],
+        'monospace': ['Courier New'],
 
+      },
       preload: true,
       styles: ['normal', 'italic'],
       subsets: [
@@ -52,14 +52,12 @@ export default defineNuxtConfig({
         'latin',
       ],
     },
-
     assets: {
       prefix: '/_fonts',
     },
   },
   content: {
     documentDriven: true,
-
     navigation: {
       fields: ['navTitle'],
     },
