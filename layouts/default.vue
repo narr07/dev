@@ -3,7 +3,9 @@
 <template>
   <div>
     <NavBar />
-    <slot />
+    <div class="py-20 px-2 md:px-14">
+      <slot />
+    </div>
   </div>
 </template>
 
