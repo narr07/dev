@@ -40,7 +40,7 @@ function scrollToHeading(id: string) {
   if (element) {
     window.setTimeout(() => {
       window.scrollBy({
-        top: element.getBoundingClientRect().top - 65,
+        top: element.getBoundingClientRect().top - 70,
         behavior: 'smooth',
       })
     }, 100)
@@ -141,8 +141,9 @@ function scrollToHeading(id: string) {
                         :href="`#${link.id}`"
                         :class="[activeHeadings.includes(link.id) ? 'text-primary-800 bg-yellow dark:bg-yellow-700 dark:text-primary-900' : 'hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300']"
                         @click.prevent="scrollToHeading(link.id)"
-                        @click="close"
-                      >{{ link.text }}</a>
+                      > <p @click="close">
+                        {{ link.text }}
+                      </p></a>
                     </div>
                   </div>
                 </template>
@@ -167,6 +168,6 @@ function scrollToHeading(id: string) {
         </div>
       </div>
     </UContainer>
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>

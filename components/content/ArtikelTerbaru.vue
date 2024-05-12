@@ -23,9 +23,11 @@ const articles = computed(() => _articles.value || [])
     class="py-4 md:py-8 "
   >
     <div class="max-w-[85rem] ">
-      <h1 class="headline">
-        Artikel & tutotrial Terbaru
-      </h1>
+      <div class="py-10">
+        <h1 class="headline">
+          Artikel & tutotrial Terbaru
+        </h1>
+      </div>
       <!-- Grid -->
       <div
         class="grid md:grid-cols-2 lg:grid-cols-3   gap-6"

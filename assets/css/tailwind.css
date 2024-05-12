@@ -7,7 +7,7 @@
     @apply drop-shadow-2 dark:drop-shadow-2gelap hover:bg-yellow hover:drop-shadow-1 transition bg-gray-100 dark:bg-gray-900 dark:ring-gray-800 ring-1 ring-gray-200  dark:hover:bg-gray-800   dark:hover:ring-permadi-500;
   }
   .headline {
-    @apply text-center max-w-3xl mx-auto block font-extrabold  text-g3;
+    @apply text-center max-w-3xl mx-auto block font-extrabold text-g2 md:text-g3;
   }
   .subheadline {
     @apply mt-3 mb-6 text-center max-w-3xl mx-auto;
