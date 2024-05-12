@@ -36,7 +36,11 @@
                               : 'ghost'
                           "
                           :to="link._path"
-                        />
+                        >
+                          <div class="hidden md:block">
+                            {{ link.title }}
+                          </div>
+                        </UButton>
                       </UTooltip>
                     </li>
                   </ul>

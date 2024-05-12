@@ -15,7 +15,7 @@
 }
 @layer base {
   html {
-    @apply text-[16px] md:text-[18px] scroll-smooth;
+    @apply text-[16px]  scroll-smooth;
   }
   body {
     @apply font-body  bg-permadi-50 dark:bg-permadi-950 transition;

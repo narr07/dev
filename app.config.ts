@@ -111,7 +111,7 @@ export default defineAppConfig({
       container: 'relative w-full  ',
       base: 'focus:outline-none',
       list: {
-        base: 'relative ring-1 dark:ring-permadi-800 drop-shadow-1 dark:drop-shadow-1gelap ring-permadi-800',
+        base: 'relative ring-1 dark:ring-permadi-800  ring-permadi-800',
         background: 'bg-gray-100 dark:bg-gray-900',
         rounded: 'rounded',
         shadow: '',
@@ -130,7 +130,7 @@ export default defineAppConfig({
           base: ' relative inline-flex items-center justify-center flex-shrink-0 w-full ui-focus-visible:outline-0 ui-focus-visible:ring-2 ui-focus-visible:ring-primary-500 dark:ui-focus-visible:ring-primary-400 ui-not-focus-visible:outline-none focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors duration-200 ease-out',
           background: '',
           active: 'text-gray-900 dark:text-yellow  transition',
-          inactive: 'text-gray-500 dark:text-gray-600',
+          inactive: 'text-gray-800 dark:text-gray-500',
           height: 'h-8',
           padding: 'px-3',
           size: 'text-sm',

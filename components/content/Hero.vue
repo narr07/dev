@@ -24,7 +24,7 @@ const designIcon = ref([
   { title: 'InCoppy', iconName: 'i-logos-adobe-incopy', url: 'https://illustrator.example.com' },
   { title: 'InDesign', iconName: 'i-logos-adobe-indesign', url: 'https://illustrator.example.com' },
 ])
-const techIcon = ref([
+const techIcons = [
   { title: 'Python', iconName: 'i-skill-icons-python-dark', url: 'https://illustrator.example.com' },
   { title: 'Laravel', iconName: 'i-skill-icons-nuxtjs-dark', url: 'https://illustrator.example.com' },
   { title: 'Flutter', iconName: 'i-skill-icons-flutter-dark', url: 'https://illustrator.example.com' },
@@ -43,8 +43,7 @@ const techIcon = ref([
   { title: 'Supabase', iconName: 'i-skill-icons-supabase-dark', url: 'https://illustrator.example.com' },
   { title: 'Typescript', iconName: 'i-skill-icons-typescript', url: 'https://illustrator.example.com' },
   { title: 'Vercel', iconName: 'i-skill-icons-vercel-dark', url: 'https://illustrator.example.com' },
-
-])
+]
 
 const items = [
   SvgDesigner,
@@ -85,7 +84,7 @@ const tabitems = [{
 </script>
 
 <template>
-  <UContainer>
+  <UContainer class="pt-10 md:pt-16">
     <div class="grid md:grid-cols-2 h-full gap-4">
       <!-- corousel -->
       <UCard class="cardHover">
@@ -124,40 +123,45 @@ const tabitems = [{
         </template>
         <!-- konten tab 1 -->
         <template #user>
-          <UCard class="cardHover h-full">
+          <UCard class=" h-full">
             <p>
               Saya <span class="text-permadi-950 dark:text-yellow font-bold">
                 Dinar Permadi Yusup,
               </span>
               Seorang guru SD yang menguasai bidang desain grafis dan pemograman. Saya memiliki keahlian dalam
-              berbagai gaya desain dan menguasai beberapa bahasa pemrograman anatara lain Dart, Python dan JavaScript. Melalui website ini, Saya
-              ingin berbagi pengetahuan dan membantu orang lain dalam dunia ke-guruan, belajar desain dan pemrograman. Saya lulusan Universitas Pendidikan Indonesia (UPI) dan saat ini bekerja sebagai guru di SDN Teja II - Majalengka.
+              berbagai gaya desain dan menguasai beberapa bahasa pemrograman. Melalui website ini, Saya
+              ingin berbagi pengetahuan dalam  belajar desain dan pemrograman. Saya lulusan Universitas Pendidikan Indonesia (UPI) dan saat ini bekerja sebagai guru di SDN Teja II
             </p>
           </UCard>
         </template>
 
         <!-- konten tab 2 -->
         <template #desain>
-          <UCard class="cardHover h-full">
+          <UCard class=" h-full">
             <div class=" p-2 items-center gap-4 ">
               <div class="flex flex-wrap gap-4 justify-center ">
                 <div
-                  v-for="(design) in designIcon"
-                  :key="design.title"
+                  v-for="(button, index) in designIcon"
+                  :key="index"
                 >
-                  <UTooltip :text="design.title">
+                  <UTooltip
+                    :text="button.title"
+                    placement="bottom"
+                    :popper="{ arrow: 'true' }"
+                  >
                     <UButton
                       class="px-1.5"
-                      color="primary"
-                      variant="outline"
-                      :to="design.url"
+                      color="gray"
+                      variant="ghost"
+                      :to="button.url"
                       target="_blank"
-                      :aria-label="design.title"
+                      trailing="false"
+                      :aria-label="button.title"
                       rel="noopener noreferrer nofollow"
                     >
                       <UIcon
                         class="w-10 h-10"
-                        :name="design.iconName"
+                        :name="button.iconName"
                       />
                     </UButton>
                   </UTooltip>
@@ -169,30 +173,31 @@ const tabitems = [{
 
         <!-- konten tab 3 -->
         <template #teknologi>
-          <UCard class="cardHover h-full">
+          <UCard class=" h-full">
             <div class=" p-2 items-center gap-4 ">
               <div class="flex flex-wrap gap-4 justify-center ">
                 <div
-                  v-for="(tech) in techIcon"
-                  :key="tech.title"
+                  v-for="(techIcon, index) in techIcons"
+                  :key="index"
                 >
                   <UTooltip
-                    :text="tech.title"
+                    :text="techIcon.title"
+                    placement="bottom"
+                    :popper="{ arrow: 'true' }"
                   >
                     <UButton
                       class="px-1.5"
-                      color="primary"
-                      variant="outline"
+                      color="gray"
+                      variant="ghost"
                       :trailing="false"
-                      :to="tech.url"
+                      :to="techIcon.url"
                       target="_blank"
-                      :aria-label="tech.title"
+                      :aria-label="techIcon.title"
                       rel="noopener noreferrer nofollow"
                     >
                       <UIcon
-
                         class="w-10 h-10"
-                        :name="tech.iconName"
+                        :name="techIcon.iconName"
                       />
                     </UButton>
                   </UTooltip>
