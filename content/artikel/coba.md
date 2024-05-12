@@ -7,7 +7,19 @@ layout: artikel
 
 # Write Articles
 
+`code inline`.
+
+`const codeInline: string = 'highlighted code inline'`
+
 Write Markdown articles in Alpine is straightforward.
+
+```vue [pages/[...slug\\].vue]
+<template>
+  <main>
+    <ContentDoc />
+  </main>
+</template>
+```
 
 ## Create an articles list
 
@@ -21,17 +33,11 @@ The numbered prefix determines the order of the menu items.
 
 In this file, use the `articles-list` component to display the list of articles:
 
-```md [2.articles.md]
----
-title: 'Articles'
-layout: 'page'
----
-::articles-list
----
-path: articles
----
-::
-```
+  ```js [file.js]{4-6,7} meta-info=val
+  export default () => {
+    console.log('Code block')
+  }
+  ```
 
 The `path` prop corresponds to the directory where the articles are stored.
 
