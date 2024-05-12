@@ -85,128 +85,146 @@ const tabitems = [{
 
 <template>
   <UContainer class="pt-10 md:pt-16">
-    <div class="grid md:grid-cols-2 h-full gap-4">
+    <div class="grid md:grid-cols-2 h-full  gap-4">
       <!-- corousel -->
-      <UCard class="cardHover">
-        <UCarousel
-          ref="carouselRef"
-          v-slot="{ item }"
-          :items="items"
-          :ui="{
-            item: 'basis-full',
+      <div class="h-full">
+        <UCard class="cardHover">
+          <UCarousel
+            ref="carouselRef"
+            v-slot="{ item }"
+            :items="items"
+            :ui="{
+              item: 'basis-full',
 
-          }"
-          class="mx-auto rounded-lg overflow-hidden"
-        >
-          <component
-            :is="item"
-            class="justify-center mx-auto"
-          />
-        </UCarousel>
-      </UCard>
-      <!-- tab -->
-      <UTabs
-        class="h-full"
-        :items="tabitems"
-      >
-        <!-- tombol tab -->
-        <template #default="{ item }">
-          <div class="flex items-center gap-2 relative truncate">
-            <UIcon
-              :name="item.icon"
-              class="w-4 h-4  flex-shrink-0"
+            }"
+            class="mx-auto rounded-lg overflow-hidden"
+          >
+            <component
+              :is="item"
+              class="justify-center mx-auto"
             />
-            <span>
-              {{ item.label }}
-            </span>
-          </div>
-        </template>
-        <!-- konten tab 1 -->
-        <template #user>
-          <UCard class=" h-full">
-            <p>
-              Saya <span class="text-permadi-950 dark:text-yellow font-bold">
-                Dinar Permadi Yusup,
+          </UCarousel>
+        </UCard>
+      </div>
+      <!-- tab -->
+      <div class="h-full">
+        <UTabs
+          class=""
+          :items="tabitems"
+        >
+          <!-- tombol tab -->
+          <template #default="{ item }">
+            <div class="flex items-center gap-2 relative truncate">
+              <UIcon
+                :name="item.icon"
+                class="w-4 h-4  flex-shrink-0"
+              />
+              <span>
+                {{ item.label }}
               </span>
-              Seorang guru SD yang menguasai bidang desain grafis dan pemograman. Saya memiliki keahlian dalam
-              berbagai gaya desain dan menguasai beberapa bahasa pemrograman. Melalui website ini, Saya
-              ingin berbagi pengetahuan dalam  belajar desain dan pemrograman. Saya lulusan Universitas Pendidikan Indonesia (UPI) dan saat ini bekerja sebagai guru di SDN Teja II
-            </p>
-          </UCard>
-        </template>
+            </div>
+          </template>
+          <!-- konten tab 1 -->
+          <template #user>
+            <UCard class="my-auto h-full p-3">
+              <p>
+                Saya <span class="text-permadi-950 dark:text-yellow font-bold">
+                  Dinar Permadi Yusup,
+                </span>
+                Seorang guru SD yang menguasai bidang desain grafis dan pemograman. Saya memiliki keahlian dalam
+                berbagai gaya desain dan menguasai beberapa bahasa pemrograman. Melalui website ini, Saya
+                ingin berbagi pengetahuan dalam  belajar desain dan pemrograman. Saya lulusan Universitas Pendidikan Indonesia (UPI) dan saat ini bekerja sebagai guru di SDN Teja II
+              </p>
+            </UCard>
+          </template>
 
-        <!-- konten tab 2 -->
-        <template #desain>
-          <UCard class=" h-full">
-            <div class=" p-2 items-center gap-4 ">
-              <div class="flex flex-wrap gap-4 justify-center ">
-                <div
-                  v-for="(button, index) in designIcon"
-                  :key="index"
-                >
-                  <UTooltip
-                    :text="button.title"
-                    placement="bottom"
-                    :popper="{ arrow: 'true' }"
+          <!-- konten tab 2 -->
+          <template #desain>
+            <UCard class=" h-full">
+              <div class="  items-center gap-4 ">
+                <div class="flex flex-wrap gap-4 justify-center ">
+                  <div
+                    v-for="(button, index) in designIcon"
+                    :key="index"
                   >
-                    <UButton
-                      class="px-1.5"
-                      color="gray"
-                      variant="ghost"
-                      :to="button.url"
-                      target="_blank"
-                      trailing="false"
-                      :aria-label="button.title"
-                      rel="noopener noreferrer nofollow"
+                    <UTooltip
+                      :text="button.title"
+                      placement="bottom"
+                      :popper="{ arrow: 'true' }"
                     >
-                      <UIcon
-                        class="w-10 h-10"
-                        :name="button.iconName"
-                      />
-                    </UButton>
-                  </UTooltip>
+                      <UButton
+                        class="px-1.5"
+                        color="gray"
+                        variant="ghost"
+                        :to="button.url"
+                        target="_blank"
+                        :title="button.title"
+                        :aria-label="button.title"
+                        rel="noopener noreferrer nofollow"
+                      >
+                        <UIcon
+                          class="w-10 h-10"
+                          :name="button.iconName"
+                        />
+                        <span class="visually-hidden">{{ button.title }}</span>
+                      </UButton>
+                    </UTooltip>
+                  </div>
                 </div>
               </div>
-            </div>
-          </UCard>
-        </template>
+            </UCard>
+          </template>
 
-        <!-- konten tab 3 -->
-        <template #teknologi>
-          <UCard class=" h-full">
-            <div class=" p-2 items-center gap-4 ">
-              <div class="flex flex-wrap gap-4 justify-center ">
-                <div
-                  v-for="(techIcon, index) in techIcons"
-                  :key="index"
-                >
-                  <UTooltip
-                    :text="techIcon.title"
-                    placement="bottom"
-                    :popper="{ arrow: 'true' }"
+          <!-- konten tab 3 -->
+          <template #teknologi>
+            <UCard class=" h-full">
+              <div class="  items-center gap-4 ">
+                <div class="flex flex-wrap gap-4 justify-center ">
+                  <div
+                    v-for="(techIcon, index) in techIcons"
+                    :key="index"
                   >
-                    <UButton
-                      class="px-1.5"
-                      color="gray"
-                      variant="ghost"
-                      :trailing="false"
-                      :to="techIcon.url"
-                      target="_blank"
-                      :aria-label="techIcon.title"
-                      rel="noopener noreferrer nofollow"
+                    <UTooltip
+                      :text="techIcon.title"
+                      placement="bottom"
+                      :popper="{ arrow: 'true' }"
                     >
-                      <UIcon
-                        class="w-10 h-10"
-                        :name="techIcon.iconName"
-                      />
-                    </UButton>
-                  </UTooltip>
+                      <UButton
+                        class="px-1.5"
+                        color="gray"
+                        variant="ghost"
+                        :to="techIcon.url"
+                        target="_blank"
+                        :aria-label="techIcon.title"
+                        :title="techIcon.title"
+                        rel="noopener noreferrer nofollow"
+                      >
+                        <UIcon
+                          class="w-10 h-10"
+                          :name="techIcon.iconName"
+                        /> <span class="visually-hidden">{{ techIcon.title }}</span>
+                      </UButton>
+                    </UTooltip>
+                  </div>
                 </div>
               </div>
-            </div>
-          </UCard>
-        </template>
-      </UTabs>
+            </UCard>
+          </template>
+        </UTabs>
+      </div>
     </div>
   </UContainer>
 </template>
+
+<style>
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+</style>

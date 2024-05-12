@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxtjs/seo',
     'nuxt-delay-hydration',
+    '@vueuse/nuxt',
   ],
   eslint: {
     config: {
@@ -71,5 +72,8 @@ export default defineNuxtConfig({
       },
       preload: ['json', 'js', 'ts', 'html', 'css', 'vue', 'diff', 'shell', 'markdown', 'yaml', 'bash', 'ini', 'c', 'cpp'],
     },
+  },
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
   },
 })
