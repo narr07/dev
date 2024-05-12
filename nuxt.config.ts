@@ -17,13 +17,13 @@ export default defineNuxtConfig({
   },
   site: {
     url: 'https://permadi.dev',
-    name: 'Website Dinar Permadi Yusup',
-    description: 'Welcome to my awesome site!',
+    name: 'Dinar Permadi Yusup',
+    description: 'Dinar Permadi Yusup: Guru SD, Desainer Grafis, dan Programmer',
     defaultLocale: 'id', // not needed if you have @nuxtjs/i18n installed
   },
   ui: {
     global: true,
-    icons: ['ph', 'skill-icons'],
+    icons: ['ph', 'skill-icons', 'devicon', 'logos', 'file-icons', 'vscode-icons'],
   },
   fonts: {
     families: [

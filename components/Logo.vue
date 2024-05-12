@@ -11,7 +11,12 @@
     style="enable-background: new 0 0 500 500"
     xml:space="preserve"
   >
-    <circle style="fill: #acd1c6" cx="250" cy="250" r="250" />
+    <circle
+      style="fill: #acd1c6"
+      cx="250"
+      cy="250"
+      r="250"
+    />
     <g>
       <g>
         <path

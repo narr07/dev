@@ -20,7 +20,7 @@
                       <UTooltip
                         :text="link.title"
                         placement="bottom"
-                        popper="{ arrow: true }"
+                        :popper="{ arrow: 'true' }"
                       >
                         <UButton
                           role="link"

@@ -3,6 +3,49 @@ import SvgDesigner from './SvgDesigner.vue'
 import SvgGuru from './SvgGuru.vue'
 import SvgProgrammer from './SvgProgrammer.vue'
 
+const designIcon = ref([
+  { title: 'Illustrator', iconName: 'i-logos-adobe-illustrator', url: 'https://illustrator.example.com' },
+  { title: 'Photoshop', iconName: 'i-logos-adobe-photoshop', url: 'https://illustrator.example.com' },
+  { title: 'Figma', iconName: 'i-skill-icons-figma-dark', url: 'https://figma.example.com' },
+  { title: 'XD', iconName: 'i-logos-adobe-xd', url: 'https://illustrator.example.com' },
+  { title: 'Premiere', iconName: 'i-logos-adobe-premiere', url: 'https://illustrator.example.com' },
+  { title: 'After Effect', iconName: 'i-logos-adobe-after-effects', url: 'https://illustrator.example.com' },
+  { title: 'Lightroom', iconName: 'i-logos-adobe-lightroom', url: 'https://illustrator.example.com' },
+  { title: 'Animate', iconName: 'i-logos-adobe-animate', url: 'https://illustrator.example.com' },
+  { title: 'Affinity Designer', iconName: 'i-vscode-icons-file-type-affinitydesigner', url: 'https://illustrator.example.com' },
+  { title: 'Corel Draw', iconName: 'i-file-icons-coreldraw-alt', url: 'https://illustrator.example.com' },
+  { title: 'SketchUp', iconName: 'i-skill-icons-sketchup-dark', url: 'https://sketchup.example.com' },
+  { title: 'Blender', iconName: 'i-skill-icons-blender-dark', url: 'https://figma.example.com' },
+  { title: 'Gimp', iconName: 'i-devicon-gimp', url: 'https://figma.example.com' },
+  { title: 'InkScape', iconName: 'i-devicon-inkscape', url: 'https://figma.example.com' },
+  { title: 'Sketch', iconName: 'i-devicon-sketch', url: 'https://figma.example.com' },
+  { title: 'Canva', iconName: 'i-devicon-canva', url: 'https://figma.example.com' },
+
+  { title: 'InCoppy', iconName: 'i-logos-adobe-incopy', url: 'https://illustrator.example.com' },
+  { title: 'InDesign', iconName: 'i-logos-adobe-indesign', url: 'https://illustrator.example.com' },
+])
+const techIcon = ref([
+  { title: 'Python', iconName: 'i-skill-icons-python-dark', url: 'https://illustrator.example.com' },
+  { title: 'Laravel', iconName: 'i-skill-icons-nuxtjs-dark', url: 'https://illustrator.example.com' },
+  { title: 'Flutter', iconName: 'i-skill-icons-flutter-dark', url: 'https://illustrator.example.com' },
+  { title: 'Laravel', iconName: 'i-skill-icons-tailwindcss-dark', url: 'https://illustrator.example.com' },
+  { title: 'Laravel', iconName: 'i-skill-icons-nextjs-dark', url: 'https://illustrator.example.com' },
+  { title: 'Javascript', iconName: 'i-skill-icons-javascript', url: 'https://illustrator.example.com' },
+  { title: 'Dart', iconName: 'i-skill-icons-dart-dark', url: 'https://illustrator.example.com' },
+  { title: 'Laravel', iconName: 'i-skill-icons-python-dark', url: 'https://illustrator.example.com' },
+  { title: 'Flask', iconName: 'i-skill-icons-flask-dark', url: 'https://illustrator.example.com' },
+  { title: 'Django', iconName: 'i-skill-icons-django', url: 'https://illustrator.example.com' },
+  { title: 'Vue', iconName: 'i-skill-icons-vuejs-dark', url: 'https://illustrator.example.com' },
+  { title: 'PHP', iconName: 'i-skill-icons-php-dark', url: 'https://illustrator.example.com' },
+  { title: 'Laravel', iconName: 'i-skill-icons-laravel-dark', url: 'https://illustrator.example.com' },
+  { title: 'React', iconName: 'i-skill-icons-react-dark', url: 'https://illustrator.example.com' },
+  { title: 'Git', iconName: 'i-skill-icons-git', url: 'https://illustrator.example.com' },
+  { title: 'Supabase', iconName: 'i-skill-icons-supabase-dark', url: 'https://illustrator.example.com' },
+  { title: 'Typescript', iconName: 'i-skill-icons-typescript', url: 'https://illustrator.example.com' },
+  { title: 'Vercel', iconName: 'i-skill-icons-vercel-dark', url: 'https://illustrator.example.com' },
+
+])
+
 const items = [
   SvgDesigner,
   SvgGuru,
@@ -44,6 +87,7 @@ const tabitems = [{
 <template>
   <UContainer>
     <div class="grid md:grid-cols-2 h-full gap-4">
+      <!-- corousel -->
       <UCard class="cardHover">
         <UCarousel
           ref="carouselRef"
@@ -61,11 +105,12 @@ const tabitems = [{
           />
         </UCarousel>
       </UCard>
-
+      <!-- tab -->
       <UTabs
         class="h-full"
         :items="tabitems"
       >
+        <!-- tombol tab -->
         <template #default="{ item }">
           <div class="flex items-center gap-2 relative truncate">
             <UIcon
@@ -77,28 +122,82 @@ const tabitems = [{
             </span>
           </div>
         </template>
+        <!-- konten tab 1 -->
         <template #user>
           <UCard class="cardHover h-full">
             <p>
               Saya <span class="text-permadi-950 dark:text-yellow font-bold">
-
                 Dinar Permadi Yusup,
               </span>
-              Seorang Guru, Desainer, dan Programmer
+              Seorang guru SD yang menguasai bidang desain grafis dan pemograman. Saya memiliki keahlian dalam
+              berbagai gaya desain dan menguasai beberapa bahasa pemrograman anatara lain Dart, Python dan JavaScript. Melalui website ini, Saya
+              ingin berbagi pengetahuan dan membantu orang lain dalam dunia ke-guruan, belajar desain dan pemrograman. Saya lulusan Universitas Pendidikan Indonesia (UPI) dan saat ini bekerja sebagai guru di SDN Teja II - Majalengka.
             </p>
           </UCard>
         </template>
+
+        <!-- konten tab 2 -->
         <template #desain>
           <UCard class="cardHover h-full">
-            <div class=" p-2 items-center gap-4 md:gap-8">
-              <div class="flex flex-col h-full justify-center pb-4 md:pb-0 w-full" />
+            <div class=" p-2 items-center gap-4 ">
+              <div class="flex flex-wrap gap-4 justify-center ">
+                <div
+                  v-for="(design) in designIcon"
+                  :key="design.title"
+                >
+                  <UTooltip :text="design.title">
+                    <UButton
+                      class="px-1.5"
+                      color="primary"
+                      variant="outline"
+                      :to="design.url"
+                      target="_blank"
+                      :aria-label="design.title"
+                      rel="noopener noreferrer nofollow"
+                    >
+                      <UIcon
+                        class="w-10 h-10"
+                        :name="design.iconName"
+                      />
+                    </UButton>
+                  </UTooltip>
+                </div>
+              </div>
             </div>
           </UCard>
         </template>
+
+        <!-- konten tab 3 -->
         <template #teknologi>
           <UCard class="cardHover h-full">
-            <div class=" p-2 items-center gap-4 md:gap-8">
-              <div class="flex flex-col h-full justify-center pb-4 md:pb-0 w-full" />
+            <div class=" p-2 items-center gap-4 ">
+              <div class="flex flex-wrap gap-4 justify-center ">
+                <div
+                  v-for="(tech) in techIcon"
+                  :key="tech.title"
+                >
+                  <UTooltip
+                    :text="tech.title"
+                  >
+                    <UButton
+                      class="px-1.5"
+                      color="primary"
+                      variant="outline"
+                      :trailing="false"
+                      :to="tech.url"
+                      target="_blank"
+                      :aria-label="tech.title"
+                      rel="noopener noreferrer nofollow"
+                    >
+                      <UIcon
+
+                        class="w-10 h-10"
+                        :name="tech.iconName"
+                      />
+                    </UButton>
+                  </UTooltip>
+                </div>
+              </div>
             </div>
           </UCard>
         </template>

@@ -14,6 +14,7 @@ export default defineAppConfig({
         color: 'primary',
         loadingIcon: 'i-heroicons-arrow-path-20-solid',
       },
+
     },
     card: {
       base: 'overflow-hidden ',
