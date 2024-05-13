@@ -38,7 +38,7 @@ const isOpen = ref(false)
   <div
     v-if="galeri._path && galeri.title"
     :data-content-id="id"
-    class="rounded-lg break-inside"
+    class="rounded-lg py-2 break-inside"
   >
     <div class="relative ">
       <div
@@ -50,7 +50,7 @@ const isOpen = ref(false)
           </p>
 
           <UIcon
-            name="i-ph-leaf-duotone"
+            :name="galeri.tools[0]"
             class="text-primary-200"
           />
         </div>
