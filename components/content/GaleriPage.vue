@@ -1,4 +1,5 @@
 <script setup>
+const isOpen = ref(false)
 const gambar = [
   {
     src: `https://cdn.pixabay.com/photo/2024/04/25/06/50/banana-8719086_1280.jpg`,
@@ -48,7 +49,9 @@ const gambar = [
         :key="index"
         className="rounded-lg break-inside"
       >
-        <div class="relative ">
+        <div
+          class="relative "
+        >
           <div class="absolute bottom-0 p-1 bg-primary-700 dark:bg-opacity-75 dark:bg-permadi-800 bg-opacity-75  w-full rounded-b">
             <div class="w-full flex justify-between items-center">
               <p class="text-primary-200 text-xs">
@@ -72,6 +75,60 @@ const gambar = [
             format="webp"
           />
         </div>
+        <UModal
+          v-model="isOpen"
+          :ui="{
+            inner: 'inset-4  ',
+            // wrapper: 'z-20',
+            container: ' items-center  ',
+            padding: 'p-2 sm:p-0',
+            ring: 'ring-1 ring-primary',
+          }"
+          :overlay="true"
+        >
+          <UCard
+            :ui="{
+              header: {
+                padding: 'px-2 py-2 sm:px-2 sm:py-2 ',
+              },
+              footer: {
+                padding: 'px-2 py-1.5 sm:px-2 sm:py-2 ',
+              },
+            }"
+          >
+            <div class="pb-4">
+              <h3 class="text-center">
+                {{ item.title }}
+              </h3>
+            </div>
+            <NuxtImg
+              v-if="item.src"
+              height="500"
+              width="500"
+              :src="item.src"
+              :alt="item.title"
+              :title="item.title"
+              class="bg-contain object-contain sm:w-48 sm:h-48 lg:w-60 lg:h-60 mx-auto"
+            />
+
+            <div class="flex justify-between items-center">
+              <!-- <UTooltip :popper="{ arrow: true }" text="Tools">
+            <Icon :name="item.tools" size="32" />
+          </UTooltip> -->
+              <div class="flex justify-end">
+                <div class="flex items-center justify-end">
+                  <UButton
+                    aria-label="close"
+                    variant="outline"
+                    icon="i-heroicons-x-mark-20-solid"
+                    class="-my-1"
+                    @click="isOpen = false"
+                  />
+                </div>
+              </div>
+            </div>
+          </UCard>
+        </UModal>
       </div>
     </div>
   </UContainer>
