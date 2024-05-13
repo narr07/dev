@@ -2,7 +2,7 @@
 date: 2022-08-23T00:00:00.000Z
 description: 2 Writing Markdown articles in Alpine is straightforward.
 layout: artikel
-img: 'https://a.storyblok.com/f/98526/900x602/f0d0a355e3/pemilu.jpg'
+img: 'https://cdn.pixabay.com/photo/2024/04/25/06/50/banana-8719086_1280.jpg'
 tags: [tekonologi, guru, tutorial]
 ---
 

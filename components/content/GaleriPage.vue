@@ -1,5 +1,7 @@
 <script setup>
-const isOpen = ref(false)
+import { withTrailingSlash } from 'ufo'
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const gambar = [
   {
     src: `https://cdn.pixabay.com/photo/2024/04/25/06/50/banana-8719086_1280.jpg`,
@@ -34,28 +36,51 @@ const gambar = [
     title: 'lorem150',
   },
 ]
+
+const props = defineProps({
+  path: {
+    type: String,
+    default: 'galeri',
+  },
+})
+
+const { data: _galeri } = await useAsyncData('galeri', async () => await queryContent(withTrailingSlash(props.path)).sort({ date: -1 }).find())
+
+const galeris = computed(() => _galeri.value || [])
 </script>
 
 <template>
-  <UContainer class="md:py-6">
+  <UContainer
+    v-if="galeris?.length"
+    class="md:py-6"
+  >
     <div class="py-4 md:py-8">
       <h1 class="headline">
         Kumpulan Karya Desain
       </h1>
     </div>
-    <div className="masonry sm:masonry-sm space-y-4 md:masonry-md">
-      <div
+
+    <!-- <div
         v-for="(item, index) in gambar"
         :key="index"
         className="rounded-lg break-inside"
-      >
-        <div
+      > -->
+    <div class="masonry sm:masonry-sm space-y-4 md:masonry-md">
+      <div>
+        <GaleriCard
+          v-for="(galeri, index) in galeris.slice(0)"
+          :key="index"
+          :galeri="galeri"
+        />
+      </div>
+    </div>
+    <!-- <div
           class="relative "
         >
           <div class="absolute bottom-0 p-1 bg-primary-700 dark:bg-opacity-75 dark:bg-permadi-800 bg-opacity-75  w-full rounded-b">
             <div class="w-full flex justify-between items-center">
               <p class="text-primary-200 text-xs">
-                {{ item.title }}
+                {{ galeri.title }}
               </p>
 
               <UIcon
@@ -66,14 +91,15 @@ const gambar = [
           </div>
           <NuxtImg
             class="w-full h-auto object-contain rounded"
-            :src="item.src"
-            :alt="item.title"
+            :src="galeri.image"
+            :alt="galeri.title"
             width="500"
             height="500"
             loading="lazy"
-            :title="item.title"
+            :title="galeri.title"
             format="webp"
           />
+          </galericard>
         </div>
         <UModal
           v-model="isOpen"
@@ -98,38 +124,36 @@ const gambar = [
           >
             <div class="pb-4">
               <h3 class="text-center">
-                {{ item.title }}
+                {{ galeri.title }}
               </h3>
             </div>
             <NuxtImg
-              v-if="item.src"
+              v-if="galeri.image"
               height="500"
               width="500"
-              :src="item.src"
-              :alt="item.title"
-              :title="item.title"
+              :src="galeri.image"
+              :alt="galeri.title"
+              :title="galeri.title"
               class="bg-contain object-contain sm:w-48 sm:h-48 lg:w-60 lg:h-60 mx-auto"
             />
 
             <div class="flex justify-between items-center">
-              <!-- <UTooltip :popper="{ arrow: true }" text="Tools">
-            <Icon :name="item.tools" size="32" />
-          </UTooltip> -->
-              <div class="flex justify-end">
-                <div class="flex items-center justify-end">
-                  <UButton
-                    aria-label="close"
-                    variant="outline"
-                    icon="i-heroicons-x-mark-20-solid"
-                    class="-my-1"
-                    @click="isOpen = false"
-                  />
-                </div>
-              </div>
-            </div>
-          </UCard>
-        </UModal>
+              <UTooltip :popper="{ arrow: true }" text="Tools">
+            <Icon :name="galeri.tools" size="32" />
+          </UTooltip>
+        <div class="flex justify-end">
+          <div class="flex items-center justify-end">
+            <UButton
+              aria-label="close"
+              variant="outline"
+              icon="i-heroicons-x-mark-20-solid"
+              class="-my-1"
+              @click="isOpen = false"
+            />
+          </div>
+        </div>
       </div>
-    </div>
+      </UCard>
+      </UModal> -->
   </UContainer>
 </template>

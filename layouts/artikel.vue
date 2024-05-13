@@ -56,7 +56,6 @@ function scrollToHeading(id: string) {
 
 <template>
   <div>
-    <NavBar />
     <UContainer class="py-14 scroll-smooth md:py-16">
       <div class="max-w-3xl mx-auto">
         <UBreadcrumb
