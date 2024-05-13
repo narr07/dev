@@ -1,10 +1,13 @@
 ---
+title: Get started with Alpine
 author:
   name: Sébastien Chopin
   avatarUrl: https://pbs.twimg.com/profile_images/1042510623962275840/1Iw_Mvud_400x400.jpg
   link: https://twitter.com/atinux
 date: 2022-08-23T00:00:00.000Z
 layout: artikel
+img: 'https://a.storyblok.com/f/98526/2816x2112/268abf1fed/future-dark.jpg'
+tags: [testag, ok, tutorial]
 ---
 
 # Get started with Alpine

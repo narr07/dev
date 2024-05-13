@@ -43,12 +43,6 @@ const id = computed(() => {
     <UCard
       :ui="
         {
-          body: {
-            padding: 'px-2 py-1.5 sm:px-2',
-          },
-          base: {
-            padding: 'px-2 py-1.5 sm:px-2',
-          },
           footer: {
             padding: 'px-2 py-1.5 sm:px-4',
           },
@@ -63,28 +57,7 @@ const id = computed(() => {
         :to="article._path"
         :title="article.title"
       >
-        <div class="aspect-w-16 aspect-h-9">
-          <NuxtImg
-            class="w-full object-cover rounded"
-            :src="article.img"
-            :alt="article.title"
-            :title="article.title"
-            loading="lazy"
-            height="500"
-            width="500"
-            :placeholder="[50, 25, 75, 5]"
-          />
-        </div>
-        <div class="w-full  justify-end flex py-2 ">
-          <UBadge
-            size="xs"
-            color="gray"
-          >
-            <time>
-              {{ formatDate(article.date) }}
-            </time>
-          </UBadge>
-        </div>
+
         <div class="mb-2">
           <h2 class="font-semibold font-body leading-tight text-gray-800 dark:text-gray-300 ">
             {{ article.title }}

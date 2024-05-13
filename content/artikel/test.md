@@ -2,7 +2,7 @@
 title: "7 Keterampilan Dasar Wajib Bagi Guru di Era Digital"
 date: 2023-12-31
 description: "Menjadi guru di era digital menuntut berbagai keterampilan. Artikel ini mengulas 7 keterampilan dasar yang wajib dimiliki guru modern, termasuk penguasaan teknologi, komunikasi efektif, dan manajemen kelas yang kreatif."
-
+img: 'https://a.storyblok.com/f/98526/1619x925/936453f881/media-pembelajaran.jpg'
 layout: artikel
 icon: "i-ph-note-duotone"
 tags: [pendidikan, guru, informasi]

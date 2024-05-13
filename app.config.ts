@@ -63,14 +63,26 @@ export default defineAppConfig({
       },
     },
     badge: {
-      base: 'inline-flex items-center ring-1 ring-permadi-800',
+      base: 'inline-flex items-center ring-1 bg-permadi-900 ring-permadi-800',
       rounded: 'rounded',
       font: 'font-medium',
       size: {
+        xxs: 'text-[11px] px-1 py-0.5',
         xs: 'text-xs px-1.5 py-0.5',
         sm: 'text-xs px-2 py-1 ',
         md: 'text-sm px-2 py-1',
         lg: 'text-sm px-2.5 py-1.5',
+      },
+      color: {
+        white: {
+          solid: 'ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white dark:bg-gray-900',
+        },
+        gray: {
+          solid: 'ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-gray-800',
+        },
+        black: {
+          solid: 'text-white dark:text-gray-900 bg-primary-800  dark:bg-permadi-200',
+        },
       },
       default: {
         size: 'sm',

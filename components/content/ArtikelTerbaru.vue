@@ -32,7 +32,7 @@ const articles = computed(() => _articles.value || [])
       <div
         class="grid md:grid-cols-2 lg:grid-cols-3   gap-6"
       >
-        <ArtikelCard
+        <ArtikelTerbaruCard
           v-for="(article, index) in articles.slice(0)"
           :key="index"
           :article="article"

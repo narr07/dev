@@ -14,7 +14,8 @@
 .page-enter-from,
 .page-leave-to {
   opacity: 0;
-  transform: translateY(20px);
+  transform: scale(0.9);
+  filter: blur(1rem);
 }
 
 .page-enter-to,
