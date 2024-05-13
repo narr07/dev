@@ -2,6 +2,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities {
+  @variants responsive {
+      .masonry {
+          column-gap: 2;
+          column-count: 1;
+      }
+      .masonry-sm {
+          column-gap: 4;
+          column-count: 2;
+      }
+      .masonry-md {
+          column-gap: 4;
+          column-count: 3;
+      }
+      .break-inside {
+          break-inside: avoid;
+      }
+
+  }
+}
+
 @layer components {
   .cardHover {
     @apply drop-shadow-2 dark:drop-shadow-2gelap hover:bg-yellow hover:drop-shadow-1 transition bg-gray-100 dark:bg-gray-900 dark:ring-gray-800 ring-1 ring-gray-200  dark:hover:bg-gray-800   dark:hover:ring-permadi-500;
