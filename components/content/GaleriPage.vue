@@ -38,7 +38,6 @@ const allTools = computed(() => {
       <h1 class="headline">
         Kumpulan Karya Desain
       </h1>
-      <pre>{{ allTools }}</pre>
       <div>
         <USelectMenu
           v-model="selectedTool"
@@ -49,9 +48,9 @@ const allTools = computed(() => {
           <template #leading>
             <UIcon
 
-              :name="allTools"
+              :name="selectedTool"
               class="w-5 h-5"
-            /> <span>{{ allTools }}</span>
+            />
           </template>
         </USelectMenu>
       </div>
