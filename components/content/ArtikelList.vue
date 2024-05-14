@@ -3,7 +3,7 @@
 import { withTrailingSlash } from 'ufo'
 
 const currentPage = ref(1)
-const itemsPerPage = ref(1)
+const itemsPerPage = ref(8)
 
 const props = defineProps({
   path: {
@@ -101,13 +101,18 @@ const allTags = computed(() => {
       </div>
       <!-- End Grid -->
     </div>
-
-    <UPagination
-      v-model="currentPage"
-      :page-count="itemsPerPage"
-      :max="2"
-      :total="totalPages"
-    />
+    <div class="mt-8 flex justify-center w-full">
+      <UPagination
+        v-model="currentPage"
+        :first-button="{ icon: 'i-heroicons-arrow-small-left-20-solid', label: 'First', color: 'gray' }"
+        :last-button="{ icon: 'i-heroicons-arrow-small-right-20-solid', trailing: true, label: 'Last', color: 'gray' }"
+        :page-count="itemsPerPage"
+        :max="2"
+        :total="totalPages"
+        show-first
+        show-last
+      />
+    </div>
   </UContainer>
   <div
     v-else
