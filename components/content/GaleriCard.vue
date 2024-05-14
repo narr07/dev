@@ -81,6 +81,9 @@ const isOpen = ref(false)
           footer: {
             padding: 'px-2 py-2 sm:px-4',
           },
+          body: {
+            padding: 'px-2 py-2 sm:px-4',
+          },
         }
         "
       >
@@ -100,6 +103,8 @@ const isOpen = ref(false)
             class="w-full object-cover rounded-md aspect-video"
             :src="galeri.image"
             :alt="galeri.title"
+            height="500"
+            width="500"
             :placeholder="[50, 25, 75, 5]"
           />
         </div>

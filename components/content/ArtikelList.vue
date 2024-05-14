@@ -2,6 +2,9 @@
 <script setup lang="ts">
 import { withTrailingSlash } from 'ufo'
 
+const currentPage = ref(1)
+const itemsPerPage = ref(1)
+
 const props = defineProps({
   path: {
     type: String,
@@ -14,11 +17,21 @@ const selectedTag = ref('All')
 const { data: _articles } = await useAsyncData('artikel', async () => await queryContent(withTrailingSlash(props.path)).sort({ date: -1 }).find())
 
 const articles = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage.value
+  const end = start + itemsPerPage.value
   if (selectedTag.value === 'All') {
-    return _articles.value || []
+    return (_articles.value || []).slice(start, end)
   }
-  return (_articles.value || []).filter(article => article.tags.includes(selectedTag.value))
+  return (_articles.value || []).filter(article => article.tags.includes(selectedTag.value)).slice(start, end)
 })
+
+const totalPages = computed(() => {
+  if (selectedTag.value === 'All') {
+    return Math.ceil((_articles.value || []).length / itemsPerPage.value)
+  }
+  return Math.ceil((_articles.value || []).filter(article => article.tags.includes(selectedTag.value)).length / itemsPerPage.value)
+})
+
 const allTags = computed(() => {
   const tags = new Set()
   if (_articles.value) {
@@ -39,7 +52,7 @@ const allTags = computed(() => {
   >
     <div class="max-w-[100rem] ">
       <!-- Title -->
-      <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
+      <div class="max-w-2xl mx-auto text-center mb-10 ">
         <h1
 
           class="headline"
@@ -48,11 +61,11 @@ const allTags = computed(() => {
         </h1>
       </div>
       <!-- End Title -->
-      <div class="flex pb-4 justify-end">
+      <div class="flex pb-4 justify-center md:justify-end">
         <USelectMenu
-
           v-slot="{ open }"
           v-model="selectedTag"
+          :popper="{ placement: 'bottom' }"
           class="w-60  "
           :options="allTags as string[]"
         >
@@ -88,6 +101,13 @@ const allTags = computed(() => {
       </div>
       <!-- End Grid -->
     </div>
+
+    <UPagination
+      v-model="currentPage"
+      :page-count="itemsPerPage"
+      :max="2"
+      :total="totalPages"
+    />
   </UContainer>
   <div
     v-else

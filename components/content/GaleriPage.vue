@@ -34,11 +34,13 @@ const allTools = computed(() => {
     v-if="galeris?.length"
     class="md:py-6"
   >
-    <div class="py-4 md:py-8">
-      <h1 class="headline">
-        Kumpulan Karya Desain
-      </h1>
-      <div class="flex pt-4 justify-end">
+    <div class="">
+      <div class="mb-10">
+        <h1 class="headline">
+          Kumpulan Karya Desain
+        </h1>
+      </div>
+      <div class="flex justify-center  md:justify-end">
         <USelectMenu
           v-model="selectedTool"
           class="w-60  "
