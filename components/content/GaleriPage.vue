@@ -9,23 +9,23 @@ const props = defineProps({
   },
 })
 
-const selectedTool = ref('All')
+const selectedTool = ref({ name: 'All Tools', icon: '' })
 
 const { data: _galeri } = await useAsyncData('galeri', async () => await queryContent(withTrailingSlash(props.path)).sort({ date: -1 }).find())
 
 const galeris = computed(() => {
-  if (selectedTool.value === 'All') {
+  if (selectedTool.value.name === 'All Tools') {
     return _galeri.value || []
   }
-  return (_galeri.value || []).filter(galeri => galeri.tools.includes(selectedTool.value))
+  return (_galeri.value || []).filter(galeri => galeri.tools.map(tool => tool.name).includes(selectedTool.value.name))
 })
 
 const allTools = computed(() => {
-  const tools = new Set()
+  const tools = new Map()
   _galeri.value.forEach((galeri) => {
-    galeri.tools.forEach(tool => tools.add(tool))
+    galeri.tools.forEach(tool => tools.set(tool.name, tool))
   })
-  return ['All', ...Array.from(tools)]
+  return [{ name: 'All Tools', icon: 'i-ph-sort-ascending-duotone' }, ...Array.from(tools.values())]
 })
 </script>
 
@@ -38,19 +38,29 @@ const allTools = computed(() => {
       <h1 class="headline">
         Kumpulan Karya Desain
       </h1>
-      <div>
+      <div class="flex pt-4 justify-end">
         <USelectMenu
           v-model="selectedTool"
+          class="w-60  "
           :options="allTools"
           placeholder="Pilih tool"
           @select="selectedTool = $event"
         >
-          <template #leading>
+          <template #label>
             <UIcon
-
-              :name="selectedTool"
-              class="w-5 h-5"
+              v-if="selectedTool.icon"
+              :name="selectedTool.icon"
+              class="w-5 h-5 mr-2"
             />
+            <span class="truncate">{{ selectedTool.name }}</span>
+          </template>
+
+          <template #option="{ option: selectedTool }">
+            <UIcon
+              :name="selectedTool.icon"
+              class="w-5 h-5 mr-2"
+            />
+            <span class="truncate">{{ selectedTool.name }}</span>
           </template>
         </USelectMenu>
       </div>

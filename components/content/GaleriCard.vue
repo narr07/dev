@@ -50,7 +50,7 @@ const isOpen = ref(false)
           </p>
 
           <UIcon
-            :name="galeri.tools[0]"
+            :name="galeri.tools[0].icon"
             class="text-primary-200"
           />
         </div>
