@@ -9,9 +9,27 @@ const props = defineProps({
   },
 })
 
+const selectedTag = ref('All')
+
 const { data: _articles } = await useAsyncData('artikel', async () => await queryContent(withTrailingSlash(props.path)).sort({ date: -1 }).find())
 
-const articles = computed(() => _articles.value || [])
+const articles = computed(() => {
+  if (selectedTag.value === 'All') {
+    return _articles.value || []
+  }
+  return (_articles.value || []).filter(article => article.tags.includes(selectedTag.value))
+})
+const allTags = computed(() => {
+  const tags = new Set()
+  if (_articles.value) {
+    _articles.value.forEach((article) => {
+      if (article.tags) {
+        article.tags.forEach((tag: string) => tags.add(tag))
+      }
+    })
+  }
+  return ['All', ...Array.from(tags)]
+})
 </script>
 
 <template>
@@ -23,14 +41,38 @@ const articles = computed(() => _articles.value || [])
       <!-- Title -->
       <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
         <h1
-          data-aos="fade-up"
-          data-aos-anchor-placement="top-bottom"
-          class="title"
+
+          class="headline"
         >
           List of Artikel written by Dinar Permadi Yusup
         </h1>
       </div>
       <!-- End Title -->
+      <div class="flex pb-4 justify-end">
+        <USelectMenu
+
+          v-slot="{ open }"
+          v-model="selectedTag"
+          class="w-60  "
+          :options="allTags as string[]"
+        >
+          <UButton
+            color="gray"
+            class="flex-1 justify-between"
+          >
+            <span class="capitalize">
+
+              {{ selectedTag }}
+            </span>
+
+            <UIcon
+              name="i-heroicons-chevron-right-20-solid"
+              class="w-5 h-5 transition-transform text-gray-400 dark:text-gray-500"
+              :class="[open && 'transform rotate-90']"
+            />
+          </UButton>
+        </USelectMenu>
+      </div>
 
       <!-- Grid -->
       <div

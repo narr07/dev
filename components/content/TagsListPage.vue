@@ -4,7 +4,7 @@ const route = useRoute()
 const selectedTag = ref(route.hash.replace(/^#/, ''))
 
 async function fetchContent() {
-  const content = await queryContent(['galeri', 'artikel', 'project']).where({ tags: { $in: [selectedTag.value] } }).find()
+  const content = await queryContent(['artikel']).where({ tags: { $in: [selectedTag.value] } }).find()
   console.log(content)
   return content
 }
