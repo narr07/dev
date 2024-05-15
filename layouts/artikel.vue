@@ -48,10 +48,10 @@ function scrollToHeading(id: string) {
   }
 }
 
-// defineOgImageComponent('OgImage', {
-//   title: page.title,
-//   description: page.description,
-// })
+defineOgImageComponent('OgImage', {
+  title: page.title,
+  description: page.description,
+})
 
 const networks = [
 

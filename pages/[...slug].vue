@@ -16,7 +16,7 @@
 .page-leave-to {
   opacity: 0;
   transform: scale(0.9);
-  filter: blur(1rem);
+  /* filter: blur(1rem); */
 }
 
 .page-enter-to,

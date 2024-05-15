@@ -1,6 +1,6 @@
 ---
 title: 'Kunci Sukses Guru di Era Digital: Membangun Pendidikan Berkualitas di Indonesia'
-date: '10 Mei 2024'
+date: '10-05-2024'
 description: 'Jelajahi keterampilan esensial yang harus dimiliki guru di Indonesia untuk menghadapi tantangan pendidikan di era digital.'
 img: 'https://a.storyblok.com/f/98526/1792x1024/37b377a7da/kunci-sukses-guru-di-era-digital-membangun-pendidikan-berkualitas-di-indonesia.webp'
 tags: [Guru]
