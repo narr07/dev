@@ -36,9 +36,7 @@ defineProps({
       <p
         class="text-gray-200  line-clamp-2 leading-tight pr-10"
         :class="description?.length > 100 ? 'text-3xl' : 'text-5xl'"
-      >
-        {{ description }}
-      </p>
+      />
       <Logo class="w-[100px] h-[100px] " />
     </div>
   </div>
