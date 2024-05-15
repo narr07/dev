@@ -66,7 +66,7 @@ const networks = [
     <UContainer class="py-14 scroll-smooth md:py-16">
       <div class="max-w-3xl mx-auto">
         <UBreadcrumb
-          class="my-4 px-2 shadow py-1 ring-1 ring-gray-200 dark:ring-gray-800 rounded-lg text-lg  bg-permadi-100 dark:bg-gray-900  inset-x-0 text-center z-30"
+          class="my-4 px-2 shadow py-1 ring-1 ring-gray-200 dark:ring-gray-800 rounded-lg text-lg  bg-white text-permadi-800 dark:text-permadi-200 dark:bg-gray-900  inset-x-0 text-center z-30"
           divider=">"
           :links="[{ label: 'Home', to: '/' }, { label: 'Artikel', to: '/artikel' }]"
         />
