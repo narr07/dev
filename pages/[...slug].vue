@@ -8,8 +8,8 @@ useSeoMeta({
   title: () => page.title,
   description: () => page.description,
   // ogImage: () => `https://dev-permadi.vercel.app/__og-image__/image${page._path}/og.png`,
-  twitterTitle: () => page.title,
-  twitterDescription: () => page.description,
+  // twitterTitle: () => page.title,
+  // twitterDescription: () => page.description,
   // twitterImage: () => `https://dev-permadi.vercel.app/__og-image__/image${page._path}/og.png`,
   // twitterCard: 'summary_large_image',
 })
