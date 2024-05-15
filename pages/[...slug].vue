@@ -1,3 +1,39 @@
+<script lang="ts" setup>
+const { page } = useContent()
+
+defineOgImageComponent('OgImage', {
+  title: page.title,
+})
+// useSeoMeta({
+//   ogImage: () => `https://dev-permadi.vercel.app/__og-image__/image${page._path}/og.png`,
+//   twitterTitle: '[twitter:title]',
+//   twitterDescription: '[twitter:description]',
+//   twitterImage: () => `https://dev-permadi.vercel.app/__og-image__/image${page._path}/og.png`,
+//   twitterCard: 'summary_large_image',
+// })
+
+useSeoMeta({
+  ogImage: '[og:image]',
+  twitterTitle: '[twitter:title]',
+  twitterDescription: '[twitter:description]',
+  twitterImage: '[twitter:image]',
+  twitterCard: 'summary',
+})
+
+useHead({
+  htmlAttrs: {
+    lang: 'id',
+  },
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: '/favicon.png',
+    },
+  ],
+})
+</script>
+
 <template>
   <div>
     <NuxtLayout>

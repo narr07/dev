@@ -25,7 +25,7 @@ defineProps({
       style="position: absolute;width: 1156px;height: 1000px;left: -215px;top: -337px;background: radial-gradient(50% 50% at 50% 50%, #004643 0%, rgba(0, 220, 130, 0) 100%);filter: blur(180.5px);opacity: 0.5;"
     />
     <div>
-      <h1 class="text-7xl mb-4 text-[#F9BC60] flex items-center">
+      <h1 class="text-6xl mb-4 text-[#F9BC60] flex items-center">
         <span>{{ title }}</span>
         <img
           v-if="image"
@@ -39,7 +39,7 @@ defineProps({
       >
         {{ description }}
       </p>
-      <Logo class="w-[60px] h-[60px] " />
+      <Logo class="w-[100px] h-[100px] " />
     </div>
   </div>
 </template>

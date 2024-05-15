@@ -1,6 +1,6 @@
 ---
 title: 'Strategi Pendidikan Indonesia 2024: Inovasi dan Kesetaraan Menuju Masa Depan Cemerlang'
-date: '14-05-2024'
+date: 2024-05-14
 description: 'Temukan wawasan mendalam tentang reformasi pendidikan Indonesia di tahun 2024, termasuk program Merdeka Belajar, integrasi teknologi, dan inisiatif kesetaraan.'
 img: 'https://a.storyblok.com/f/98526/1792x1024/f603132f3a/pendidikan-pemerintah.webp'
 tags: [Pendidikan, Guru]

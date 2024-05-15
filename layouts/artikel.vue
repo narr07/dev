@@ -40,18 +40,13 @@ function scrollToHeading(id: string) {
   if (element) {
     window.setTimeout(() => {
       window.scrollBy({
-        top: element.getBoundingClientRect().top - 80,
+        top: element.getBoundingClientRect().top - 70,
         behavior: 'smooth',
       })
     }, 100)
     emit('move', id)
   }
 }
-
-defineOgImageComponent('OgImage', {
-  title: page.title,
-  description: page.description,
-})
 
 const networks = [
 

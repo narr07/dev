@@ -21,6 +21,15 @@ export default defineNuxtConfig({
     name: 'Dinar Permadi Yusup',
     description: 'Dinar Permadi Yusup: Guru SD, Desainer Grafis, dan Programmer',
     defaultLocale: 'id', // not needed if you have @nuxtjs/i18n installed
+    themeColor: '#2B6964',
+  },
+  schemaOrg: {
+    identity: {
+      type: 'Person',
+      name: 'Dinar Permadi Yusup',
+      url: 'https://permadi.dev',
+      logo: 'https://permadi.dev/logo.png',
+    },
   },
   ui: {
     global: true,
