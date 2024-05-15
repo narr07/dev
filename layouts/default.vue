@@ -1,4 +1,13 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const { page } = useContent()
+
+if (page.title && page.description) {
+  defineOgImageComponent('OgImage', {
+    title: page.title,
+    description: page.description,
+  })
+}
+</script>
 
 <template>
   <div>
