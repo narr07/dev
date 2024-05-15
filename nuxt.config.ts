@@ -23,14 +23,14 @@ export default defineNuxtConfig({
     defaultLocale: 'id', // not needed if you have @nuxtjs/i18n installed
     themeColor: '#2B6964',
   },
-  // schemaOrg: {
-  //   identity: {
-  //     type: 'Person',
-  //     name: 'Dinar Permadi Yusup',
-  //     url: 'https://permadi.dev',
-  //     logo: 'https://permadi.dev/logo.png',
-  //   },
-  // },
+  schemaOrg: {
+    identity: {
+      type: 'Person',
+      name: 'Dinar Permadi Yusup',
+      url: 'https://permadi.dev',
+      logo: 'https://permadi.dev/logo.png',
+    },
+  },
   ui: {
     global: true,
     icons: ['ph', 'skill-icons', 'devicon', 'logos', 'file-icons', 'vscode-icons'],
