@@ -52,6 +52,18 @@ function scrollToHeading(id: string) {
 //   title: page.title,
 //   description: page.description,
 // })
+
+const networks = [
+
+  { network: 'email', icon: 'i-ph-envelope-duotone' },
+  { network: 'facebook', icon: 'i-ph-facebook-logo-duotone' },
+  { network: 'linkedin', icon: 'i-ph-linkedin-logo-duotone' },
+  { network: 'messenger', icon: 'i-ph-messenger-logo-duotone' },
+  { network: 'pinterest', icon: 'i-ph-pinterest-logo-duotone' },
+  { network: 'telegram', icon: 'i-ph-telegram-logo-duotone' },
+  { network: 'twitter', icon: 'i-ph-twitter-logo-duotone' },
+  { network: 'whatsapp', icon: 'i-ph-whatsapp-logo-duotone' },
+]
 </script>
 
 <template>
@@ -63,14 +75,26 @@ function scrollToHeading(id: string) {
           divider=">"
           :links="[{ label: 'Home', to: '/' }, { label: 'Artikel', to: '/artikel' }]"
         />
-        <UCard class="ring-1  ring-primary-800 hover:ring-gray-600 dark:hover:ring-gray-800   dark:ring-gray-800  p-2  sm:p-3 bg-yellow dark:bg-gray-900">
+        <UCard
+          :ui="
+            {
+
+              header: {
+                padding: 'px-2 py-0 sm:py-0 sm:px-4',
+              },
+
+            }
+          "
+          class="ring-1  ring-primary-800 hover:ring-gray-600 dark:hover:ring-gray-800   dark:ring-gray-800  p-2  sm:p-3 bg-yellow dark:bg-gray-900"
+        >
           <template #header>
             <div class="flex justify-between text-sm">
               <p v-if="page?.author">
                 Penulis: {{ page.author }}
               </p>
+              <p v-else />
               <UBadge
-                v-else
+
                 size="xs"
                 color="white"
               >
@@ -105,7 +129,6 @@ function scrollToHeading(id: string) {
                 <NuxtLink
                   v-for="(tag, n) in page.tags"
                   :key="n"
-
                   :to="`/tags#${tag}`"
                   class="uppercase"
                 >
@@ -122,15 +145,21 @@ function scrollToHeading(id: string) {
           </template>
         </UCard>
         <!-- konten -->
-        <UCard class="my-4 ring-gray-200 dark:ring-gray-800  flex-1 flex flex-col shadow hover:ring-gray-200 dark:hover:ring-ring-gray-800">
-          <div class="prose mx-auto prose-permadi prose-img:mx-auto prose-img:w-full prose-sm sm:prose-base  dark:prose-invert">
+        <UCard
+          class="my-4 ring-gray-200 dark:ring-gray-800  flex-1 flex flex-col shadow hover:ring-gray-200 dark:hover:ring-ring-gray-800"
+        >
+          <div
+            class="prose mx-auto prose-permadi prose-img:mx-auto prose-img:w-full prose-sm sm:prose-base  dark:prose-invert"
+          >
             <slot />
           </div>
         </UCard>
 
         <!-- sticki butom -->
         <div class="sticky bottom-3 inset-x-0 text-center">
-          <div class="inline-block relative group isolate rounded-lg background-gradient ring-1 ring-gray-200 dark:ring-gray-800  p-1  sm:p-3 bg-white dark:bg-gray-900 ">
+          <div
+            class="inline-block relative group isolate rounded-lg background-gradient ring-1 ring-gray-200 dark:ring-gray-800  p-1  sm:p-3 bg-white dark:bg-gray-900 "
+          >
             <div class="flex items-center gap-x-1.5">
               <UPopover
                 :popper="{ arrow: true }"
@@ -158,13 +187,16 @@ function scrollToHeading(id: string) {
                         :href="`#${link.id}`"
                         :class="[activeHeadings.includes(link.id) ? 'text-primary-800 bg-yellow dark:bg-yellow-700 dark:text-primary-900' : 'hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300']"
                         @click.prevent="scrollToHeading(link.id)"
-                      > <p @click="close">
-                        {{ link.text }}
-                      </p></a>
+                      >
+                        <p @click="close">
+                          {{ link.text }}
+                        </p>
+                      </a>
                     </div>
                   </div>
                 </template>
-              </UPopover><div class="block h-3 border-e border-gray-300 mx-1 dark:border-gray-600" />
+              </UPopover>
+              <div class="block h-3 border-e border-gray-300 mx-1 dark:border-gray-600" />
 
               <div class="hs-tooltip inline-block">
                 <UPopover
@@ -178,6 +210,28 @@ function scrollToHeading(id: string) {
                       trailing-icon="i-ph-share-fat-duotone"
                     />
                   </UTooltip>
+                  <template #panel="{ close }">
+                    <div class="flex p-1 items-center gap-x-1.5">
+                      <ClientOnly>
+                        <ShareNetwork
+                          v-for="network in networks"
+                          :key="network.network"
+                          :network="network.network"
+                          :url="`https://permadi.com${page._path}/`"
+                          :title="page.title"
+                          :description="page.description"
+                          :quote="page.quote"
+                          :hashtags="page.tags"
+                          twitter-user="dinarpermadi07"
+                        >
+                          <UButton
+                            :icon="network.icon"
+                            @click="close"
+                          />
+                        </ShareNetwork>
+                      </ClientOnly>
+                    </div>
+                  </template>
                 </UPopover>
               </div>
             </div>

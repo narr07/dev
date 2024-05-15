@@ -4,6 +4,7 @@ description: 2 Writing Markdown articles in Alpine is straightforward.
 layout: artikel
 img: 'https://cdn.pixabay.com/photo/2024/04/25/06/50/banana-8719086_1280.jpg'
 tags: [tekonologi, guru, tutorial]
+author: 'Perm'
 ---
 
 # Write Articles
@@ -14,6 +15,16 @@ tags: [tekonologi, guru, tutorial]
 
 Write Markdown articles in Alpine is straightforward.
 
+Implement lazy loading for images, ensuring that they load only when they come into the user's viewport. This optimizes page loading times, especially for websites with extensive image content.
+
+::gambar
+---
+title: Contoh gambar
+url: 'https://cdn.pixabay.com/photo/2024/04/25/06/50/banana-8719086_1280.jpg'
+---
+::
+
+
 ```vue [pages/[...slug\\].vue]
 <template>
   <main>
@@ -23,6 +34,12 @@ Write Markdown articles in Alpine is straightforward.
 ```
 
 ## Create an articles list
+
+::doc
+---
+url: '/doc/pdftes.pdf'
+---
+::
 
 Create a new file in the `content/` directory:
 

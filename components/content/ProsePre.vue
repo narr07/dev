@@ -10,29 +10,27 @@
       :ui="{
         background: 'bg-primary-300 dark:bg-permadi-800',
         base: {
-          padding: 'sm:mt-0',
+          padding: 'sm:mt-0 mt-0 ',
         },
         header: {
           padding: 'sm:px-2 px-2 py-1  sm:py-1  m-0',
         },
         body: {
           background: 'bg-permadi-700 dark:bg-primary-950 ',
-          padding: 'sm:px-0 px-0 py-0 p-0 sm:my-0 sm:m-0 sm:py-0 sm:p-0',
+          padding: 'sm:px-0 px-0 py-0 p-0  m-0 sm:my-0 sm:m-0 sm:py-0 sm:p-0',
         },
       }"
     >
       <template #header>
         <div class="justify-between  flex items-center">
           <div
-            v-if="filename"
+
             class="font-mono text-[12px]"
           >
             {{ filename }}
           </div>
-          <div class="font-mono text-[12px]">
-            .{{ language }}
-          </div>
-          <div>
+
+          <div class="flex justify-end">
             <UButton
               color="primary"
               variant="ghost"
@@ -53,7 +51,7 @@
 
       <pre
         :class="$props.class"
-        class="md:-mt-1 bg-black bg-opacity-0"
+        class="-mt-1 sm:-mt-1 md:-mt-1 lg:-mt-1 bg-black bg-opacity-0"
         :style="style"
       ><slot /></pre>
     </UCard>
