@@ -5,6 +5,8 @@ defineOgImageComponent('OgImage', {
   title: page.title,
 })
 // useSeoMeta({
+//   title: () => page.title,
+//   description: () => page.description,
 //   ogImage: () => `https://dev-permadi.vercel.app/__og-image__/image${page._path}/og.png`,
 //   twitterTitle: '[twitter:title]',
 //   twitterDescription: '[twitter:description]',
@@ -13,17 +15,18 @@ defineOgImageComponent('OgImage', {
 // })
 
 // useSeoMeta({
-//   ogImage: '[og:image]',
+//   title: () => page.title,
+//   description: () => page.description,
+//   // ogImage: '[og:image]',
 //   twitterTitle: '[twitter:title]',
 //   twitterDescription: '[twitter:description]',
 //   twitterImage: '[twitter:image]',
 //   twitterCard: 'summary',
 // })
 useSeoMeta({
-  title: () => page.value?.title,
-  description: () => page.value?.description,
+  title: () => page.title,
+  description: () => page.description,
 })
-
 useHead({
   htmlAttrs: {
     lang: 'id',
