@@ -64,6 +64,7 @@ const isOpen = ref(false)
         loading="lazy"
         :title="galeri.title"
         format="webp"
+        :modifiers="{ smart: true }"
         @click="isOpen = true"
       />
     </div>
@@ -103,6 +104,10 @@ const isOpen = ref(false)
             class="w-full object-cover rounded-md aspect-video"
             :src="galeri.image"
             :alt="galeri.title"
+            format="webp"
+
+            :modifiers="{ smart: true }"
+            quality="80"
             height="500"
             width="500"
             :placeholder="[50, 25, 75, 5]"

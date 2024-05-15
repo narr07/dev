@@ -3,7 +3,7 @@
 import { withTrailingSlash } from 'ufo'
 
 const currentPage = ref(1)
-const itemsPerPage = ref(8)
+const itemsPerPage = ref(12)
 
 const props = defineProps({
   path: {
@@ -89,7 +89,7 @@ const allTags = computed(() => {
 
       <!-- Grid -->
       <div
-        class="grid md:grid-cols-2  gap-6"
+        class="grid md:grid-cols-2 lg:grid-cols-3 lg:gap-4  gap-6"
       >
         <ArtikelCard
           v-for="(article, index) in articles.slice(0)"

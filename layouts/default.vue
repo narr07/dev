@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <div class="py-20 px-4 md:px-14">
+    <div class="py-20 px-2 ">
       <slot />
     </div>
   </div>

@@ -40,7 +40,7 @@ function scrollToHeading(id: string) {
   if (element) {
     window.setTimeout(() => {
       window.scrollBy({
-        top: element.getBoundingClientRect().top - 70,
+        top: element.getBoundingClientRect().top - 80,
         behavior: 'smooth',
       })
     }, 100)
@@ -59,27 +59,44 @@ function scrollToHeading(id: string) {
     <UContainer class="py-14 scroll-smooth md:py-16">
       <div class="max-w-3xl mx-auto">
         <UBreadcrumb
-          class="my-4 px-2 shadow py-1 ring-1 ring-gray-200 dark:ring-gray-800 rounded-lg text-lg  bg-white dark:bg-gray-900  inset-x-0 text-center z-30"
+          class="my-4 px-2 shadow py-1 ring-1 ring-gray-200 dark:ring-gray-800 rounded-lg text-lg  bg-permadi-100 dark:bg-gray-900  inset-x-0 text-center z-30"
           divider=">"
           :links="[{ label: 'Home', to: '/' }, { label: 'Artikel', to: '/artikel' }]"
         />
-        <UCard class="ring-1 ring-gray-200 hover:ring-gray-200 dark:hover:ring-gray-800   dark:ring-gray-800  p-2  sm:p-3 bg-white dark:bg-gray-900">
+        <UCard class="ring-1  ring-primary-800 hover:ring-gray-600 dark:hover:ring-gray-800   dark:ring-gray-800  p-2  sm:p-3 bg-yellow dark:bg-gray-900">
           <template #header>
             <div class="flex justify-between text-sm">
               <p v-if="page?.author">
                 Penulis: {{ page.author }}
               </p>
-              <p
+              <UBadge
                 v-else
-                class="justify-end"
-              />
+                size="xs"
+                color="white"
+              >
+                <time>
+                  {{ formatDate(page.date) }}
+                </time>
+              </UBadge>
             </div>
           </template>
-          <h1 class="font-bold font-body leading-tight title text-left">
-            {{ page.title }}
-          </h1>
-
-          <p>
+          <NuxtImg
+            :src="page.img"
+            :alt="page.title"
+            :title="page.title"
+            loading="lazy"
+            format="webp"
+            height="500"
+            width="500"
+            :placeholder="[50, 25, 75, 5]"
+            class="w-full object-cover rounded"
+          />
+          <div class="py-4 ">
+            <h1 class="font-bold text-xl md:text-g2 headline font-title leading-tight title text-left">
+              {{ page.title }}
+            </h1>
+          </div>
+          <p class="leading-tight text-sm">
             {{ page.description }}
           </p>
           <template #footer>
@@ -95,6 +112,7 @@ function scrollToHeading(id: string) {
                   <UBadge
                     class="mr-2"
                     size="xs"
+                    color="black"
                   >
                     {{ tag }}
                   </UBadge>
@@ -105,7 +123,7 @@ function scrollToHeading(id: string) {
         </UCard>
         <!-- konten -->
         <UCard class="my-4 ring-gray-200 dark:ring-gray-800  flex-1 flex flex-col shadow hover:ring-gray-200 dark:hover:ring-ring-gray-800">
-          <div class="prose mx-auto prose-merah prose-img:mx-auto prose-img:w-full prose-sm sm:prose-base  dark:prose-invert">
+          <div class="prose mx-auto prose-permadi prose-img:mx-auto prose-img:w-full prose-sm sm:prose-base  dark:prose-invert">
             <slot />
           </div>
         </UCard>
@@ -123,7 +141,7 @@ function scrollToHeading(id: string) {
                     size="xs"
                     square
                     color="white"
-                    trailing-icon="i-basil-document-outline"
+                    trailing-icon="i-ph-list-dashes-duotone"
                   />
                 </UTooltip>
                 <template #panel="{ close }">
@@ -157,7 +175,7 @@ function scrollToHeading(id: string) {
                     <UButton
                       size="xs"
                       color="white"
-                      trailing-icon="i-basil-share-box-solid"
+                      trailing-icon="i-ph-share-fat-duotone"
                     />
                   </UTooltip>
                 </UPopover>

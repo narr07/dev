@@ -70,6 +70,7 @@ const id = computed(() => {
             :alt="article.title"
             :title="article.title"
             loading="lazy"
+            format="webp"
             height="500"
             width="500"
             :placeholder="[50, 25, 75, 5]"

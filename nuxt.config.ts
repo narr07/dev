@@ -95,13 +95,15 @@ export default defineNuxtConfig({
     // Homepage pre-rendered at build time
     '/': { prerender: true },
     // Products page generated on demand, revalidates in background, cached until API response changes
-    // '/artikel': { swr: true },
+    // '/artikel': { isr: true },
+    // '/galeri': { isr: true },
     // Product page generated on demand, revalidates in background, cached for 1 hour (3600 seconds)
     // '/products/**': { swr: 3600 },
     // Blog posts page generated on demand, revalidates in background, cached on CDN for 1 hour (3600 seconds)
     // '/blog': { isr: 3600 },
     // Blog post page generated on demand once until next deployment, cached on CDN
-    // '/artikel/**': { isr: true },
+    '/artikel/**': { isr: true },
+    '/galeri/**': { isr: true },
     // Admin dashboard renders only on client-side
     // '/admin/**': { ssr: false },
     // Add cors headers on API routes
@@ -121,6 +123,14 @@ export default defineNuxtConfig({
         if (comp.global)
           comp.global = 'sync'
       }
+    },
+  },
+
+  image: {
+    provider: 'storyblok',
+    format: ['webp'],
+    storyblok: {
+      baseURL: 'https://a.storyblok.com',
     },
   },
 })
