@@ -123,6 +123,7 @@ function onSelect(option: any) {
       :popper="{ arrow: true }"
     >
       <UButton
+        aria-label="Buka pencarian"
         icon="i-ph-magnifying-glass-duotone"
         color="gray"
         variant="ghost"

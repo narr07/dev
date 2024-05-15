@@ -8,6 +8,10 @@ const isDark = computed({
     colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
   },
 })
+
+const ariaLabel = computed(() => {
+  return isDark.value ? 'Ganti ke mode terang' : 'Ganti ke mode gelap'
+})
 </script>
 
 <template>
@@ -21,7 +25,7 @@ const isDark = computed({
         :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
         color="gray"
         variant="ghost"
-        aria-label="Theme"
+        :aria-label="ariaLabel"
         @click="isDark = !isDark"
       />
     </UTooltip>
