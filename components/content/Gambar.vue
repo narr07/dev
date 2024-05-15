@@ -7,6 +7,7 @@
         </p>
       </div>
       <NuxtImg
+        sizes="sm:200px md:400px lg:800px"
         :src="url"
         :alt="title"
         format="webp"

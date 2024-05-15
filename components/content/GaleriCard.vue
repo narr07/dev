@@ -61,7 +61,8 @@ const isOpen = ref(false)
         :alt="galeri.title"
         width="500"
         height="500"
-
+        loading="lazy"
+        :placeholder="[50, 25, 75, 5]"
         sizes="100vw sm:50vw md:400px lg:500px"
         :title="galeri.title"
         format="webp"

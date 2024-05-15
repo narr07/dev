@@ -103,10 +103,11 @@ const networks = [
             :src="page.img"
             :alt="page.title"
             :title="page.title"
-            loading="lazy"
+
             format="webp"
             height="500"
             width="500"
+            sizes="sm:200px md:400px lg:800px"
             :placeholder="[50, 25, 75, 5]"
             class="w-full object-cover rounded"
           />
