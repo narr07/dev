@@ -24,7 +24,7 @@ async function handleTagClick(tag) {
 </script>
 
 <template>
-  <UContainer class="py-4 md:py-20">
+  <UContainer class="py-16 md:py-20">
     <UBreadcrumb
       class="my-4 px-2 shadow py-1 ring-1 ring-gray-200 dark:ring-gray-800 rounded-lg text-lg  bg-white dark:bg-gray-900  inset-x-0 text-center z-30"
       divider=">"
