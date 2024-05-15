@@ -1,7 +1,6 @@
 ---
 title: 'Kunci Sukses Guru di Era Digital: Membangun Pendidikan Berkualitas di Indonesia'
-desc
-date: 2022-08-23T00:00:00.000Z
+date: '10 Mei 2024'
 description:'Jelajahi keterampilan esensial yang harus dimiliki guru di Indonesia untuk menghadapi tantangan pendidikan di era digital. '
 img: 'https://a.storyblok.com/f/98526/1792x1024/37b377a7da/kunci-sukses-guru-di-era-digital-membangun-pendidikan-berkualitas-di-indonesia.webp'
 tags: [Guru]
@@ -13,49 +12,57 @@ icon: i-ph-book-open-text-duotone
 Sebagai seorang guru di Indonesia pada zaman sekarang, terdapat beberapa hal yang harus dimiliki agar dapat memberikan pendidikan yang berkualitas dan relevan dengan tuntutan zaman. Berikut adalah beberapa hal yang harus dimiliki oleh seorang guru di Indonesia pada jaman sekarang, serta bagaimana cara untuk mencapainya.
 
 1. **Pengetahuan yang Mendalam:**
-Seorang guru perlu memiliki pengetahuan yang mendalam dalam bidangnya. Pengetahuan yang mendalam akan memungkinkan guru untuk memberikan pemahaman yang baik kepada siswa. Untuk mencapai pengetahuan yang mendalam, seorang guru perlu terus mengembangkan diri melalui membaca literatur terkini, mengikuti pelatihan, serta terlibat dalam diskusi dan kolaborasi dengan rekan sejawat. Selain itu, guru juga dapat memperluas wawasan dengan mengikuti seminar, konferensi, dan workshop yang relevan dengan bidang pendidikan yang ditekuninya. 
+Seorang guru perlu memiliki pengetahuan yang mendalam dalam bidangnya. Pengetahuan yang mendalam akan memungkinkan guru untuk memberikan pemahaman yang baik kepada siswa. Untuk mencapai pengetahuan yang mendalam, seorang guru perlu terus mengembangkan diri melalui membaca literatur terkini, mengikuti pelatihan, serta terlibat dalam diskusi dan kolaborasi dengan rekan sejawat. Selain itu, guru juga dapat memperluas wawasan dengan mengikuti seminar, konferensi, dan workshop yang relevan dengan bidang pendidikan yang ditekuninya.
 
 ::gambar
 ---
+
 title: 'Pengetahuan yang Mendalam'
-url: 'https://a.storyblok.com/f/98526/1792x1024/da99eefc43/pengetahuan-yang-mendalam.webp'
+url: '<https://a.storyblok.com/f/98526/1792x1024/da99eefc43/pengetahuan-yang-mendalam.webp>'
 ---
+
 ::
 
 Melalui partisipasi aktif dalam kegiatan akademik dan profesional, guru dapat terus memperbarui pengetahuannya dan mengikuti perkembangan terbaru dalam dunia pendidikan. Dengan memiliki pengetahuan yang mendalam, guru dapat memberikan pemahaman yang komprehensif dan mendalam kepada siswa, serta menjadi sumber inspirasi dan pengetahuan yang dapat memotivasi siswa dalam proses pembelajaran.
 
 2. **Keterampilan Teknologi:**
-Di era digital seperti sekarang, keterampilan teknologi menjadi hal yang penting bagi seorang guru. Guru perlu mampu mengintegrasikan teknologi dalam proses pembelajaran agar dapat memfasilitasi siswa dalam memahami materi pelajaran secara lebih menarik dan interaktif. Untuk mencapai keterampilan teknologi, seorang guru perlu terus belajar dan mengikuti perkembangan teknologi yang relevan dengan dunia pendidikan. Selain itu, guru dapat mengikuti pelatihan khusus dalam pemanfaatan teknologi pendidikan, seperti pembelajaran online, penggunaan aplikasi pembelajaran, dan pemanfaatan media sosial untuk pendidikan. 
+Di era digital seperti sekarang, keterampilan teknologi menjadi hal yang penting bagi seorang guru. Guru perlu mampu mengintegrasikan teknologi dalam proses pembelajaran agar dapat memfasilitasi siswa dalam memahami materi pelajaran secara lebih menarik dan interaktif. Untuk mencapai keterampilan teknologi, seorang guru perlu terus belajar dan mengikuti perkembangan teknologi yang relevan dengan dunia pendidikan. Selain itu, guru dapat mengikuti pelatihan khusus dalam pemanfaatan teknologi pendidikan, seperti pembelajaran online, penggunaan aplikasi pembelajaran, dan pemanfaatan media sosial untuk pendidikan.
 
 ::gambar
 ---
+
 title: 'Pengetahuan yang Mendalam'
-url: 'https://a.storyblok.com/f/98526/1792x1024/7f81078a91/keterampilan-teknologi.webp'
+url: '<https://a.storyblok.com/f/98526/1792x1024/7f81078a91/keterampilan-teknologi.webp>'
 ---
+
 ::
 
 Dengan memahami dan menguasai berbagai alat dan aplikasi teknologi yang sesuai dengan kebutuhan pembelajaran, guru dapat menciptakan pengalaman belajar yang inovatif dan menarik bagi siswa. Selain itu, kolaborasi dengan guru-guru lain dan pertukaran pengalaman dalam pemanfaatan teknologi juga dapat membantu guru meningkatkan keterampilan teknologinya dan memperluas wawasan dalam mengintegrasikan teknologi dalam proses pembelajaran. Dengan keterampilan teknologi yang baik, guru dapat menciptakan lingkungan belajar yang dinamis dan responsif terhadap perkembangan teknologi sehingga siswa dapat mengembangkan keterampilan digital yang penting untuk masa depan.
 
 3. **Keterampilan Komunikasi:**
-Keterampilan komunikasi yang baik sangat diperlukan oleh seorang guru. Guru perlu mampu menyampaikan materi pelajaran dengan jelas dan menarik, serta mampu berkomunikasi secara efektif dengan siswa, orangtua siswa, dan rekan kerja. Untuk mencapai keterampilan komunikasi yang baik, seorang guru perlu terus berlatih dalam menyampaikan materi pelajaran, berinteraksi dengan siswa, serta terlibat dalam pelatihan komunikasi. Selain itu, guru juga dapat mengembangkan keterampilan komunikasi melalui partisipasi dalam kegiatan ekstrakurikuler yang melibatkan interaksi sosial, seperti klub debat, teater, atau kelompok diskusi. 
+Keterampilan komunikasi yang baik sangat diperlukan oleh seorang guru. Guru perlu mampu menyampaikan materi pelajaran dengan jelas dan menarik, serta mampu berkomunikasi secara efektif dengan siswa, orangtua siswa, dan rekan kerja. Untuk mencapai keterampilan komunikasi yang baik, seorang guru perlu terus berlatih dalam menyampaikan materi pelajaran, berinteraksi dengan siswa, serta terlibat dalam pelatihan komunikasi. Selain itu, guru juga dapat mengembangkan keterampilan komunikasi melalui partisipasi dalam kegiatan ekstrakurikuler yang melibatkan interaksi sosial, seperti klub debat, teater, atau kelompok diskusi.
 
 ::gambar
 ---
+
 title: 'Pengetahuan yang Mendalam'
-url: 'https://a.storyblok.com/f/98526/1792x1024/973774c63c/keterampilan-komunikasi.webp'
+url: '<https://a.storyblok.com/f/98526/1792x1024/973774c63c/keterampilan-komunikasi.webp>'
 ---
+
 ::
 
 Dengan memperhatikan feedback dari siswa dan rekan kerja, guru dapat terus meningkatkan kemampuan komunikasinya dalam menyampaikan informasi secara efektif dan memotivasi siswa dalam proses belajar. Selain itu, guru juga perlu memahami kebutuhan dan preferensi komunikasi dari berbagai pihak yang terlibat dalam proses pendidikan, sehingga dapat menciptakan hubungan yang harmonis dan kolaboratif dalam lingkungan sekolah. Dengan keterampilan komunikasi yang baik, guru dapat menciptakan iklim belajar yang nyaman, mendukung, dan membangun hubungan yang baik dengan seluruh stakeholder pendidikan.
 
 4. **Keterampilan Manajemen Kelas:**
-Seorang guru perlu memiliki keterampilan manajemen kelas yang baik agar dapat menciptakan lingkungan belajar yang kondusif. Keterampilan manajemen kelas meliputi kemampuan dalam mengelola waktu, mengelola perilaku siswa, dan menciptakan suasana belajar yang positif. Untuk mencapai keterampilan manajemen kelas yang baik, seorang guru perlu terus belajar melalui pengalaman mengajar dan juga melalui pelatihan khusus dalam manajemen kelas. Selain itu, guru juga dapat mengembangkan keterampilan manajemen kelas melalui observasi dan refleksi terhadap praktik pengajaran mereka, serta dengan memanfaatkan teknik-teknik manajemen kelas yang efektif, seperti penerapan aturan yang konsisten, penggunaan strategi penguatan positif, dan penanganan konflik secara bijaksana. 
+Seorang guru perlu memiliki keterampilan manajemen kelas yang baik agar dapat menciptakan lingkungan belajar yang kondusif. Keterampilan manajemen kelas meliputi kemampuan dalam mengelola waktu, mengelola perilaku siswa, dan menciptakan suasana belajar yang positif. Untuk mencapai keterampilan manajemen kelas yang baik, seorang guru perlu terus belajar melalui pengalaman mengajar dan juga melalui pelatihan khusus dalam manajemen kelas. Selain itu, guru juga dapat mengembangkan keterampilan manajemen kelas melalui observasi dan refleksi terhadap praktik pengajaran mereka, serta dengan memanfaatkan teknik-teknik manajemen kelas yang efektif, seperti penerapan aturan yang konsisten, penggunaan strategi penguatan positif, dan penanganan konflik secara bijaksana.
 
 ::gambar
 ---
+
 title: 'Pengetahuan yang Mendalam'
-url: 'https://a.storyblok.com/f/98526/1792x1024/b71d9d1631/keterampilan-manajemen-kelas.webp'
+url: '<https://a.storyblok.com/f/98526/1792x1024/b71d9d1631/keterampilan-manajemen-kelas.webp>'
 ---
+
 ::
 
 Dengan memahami kebutuhan dan karakteristik siswa, guru dapat merancang strategi manajemen kelas yang sesuai untuk menciptakan lingkungan belajar yang aman, mendukung, dan produktif. Selain itu, kolaborasi dengan rekan guru dan konselor sekolah juga dapat membantu guru dalam mengatasi tantangan dalam manajemen kelas dan meningkatkan efektivitas dalam menciptakan suasana belajar yang kondusif bagi perkembangan siswa. Dengan keterampilan manajemen kelas yang baik, guru dapat menciptakan lingkungan belajar yang terstruktur, harmonis, dan mendukung pertumbuhan akademik serta sosial-emosional siswa.

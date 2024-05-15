@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     },
   },
   site: {
-    url: 'https://permadi.dev',
+    url: 'https://dev-permadi.vercel.app/',
     name: 'Dinar Permadi Yusup',
     description: 'Dinar Permadi Yusup: Guru SD, Desainer Grafis, dan Programmer',
     defaultLocale: 'id', // not needed if you have @nuxtjs/i18n installed
