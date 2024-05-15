@@ -14,7 +14,10 @@ import DocsSearchButton from './DocsSearchButton.vue'
               placement="bottom"
               :popper="{ arrow: true }"
             >
-              <ULink to="/">
+              <ULink
+                aria-label="logo"
+                to="/"
+              >
                 <Logo />
               </ULink>
             </UTooltip>

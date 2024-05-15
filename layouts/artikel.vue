@@ -40,7 +40,7 @@ function scrollToHeading(id: string) {
   if (element) {
     window.setTimeout(() => {
       window.scrollBy({
-        top: element.getBoundingClientRect().top - 70,
+        top: element.getBoundingClientRect().top - 80,
         behavior: 'smooth',
       })
     }, 100)
@@ -162,6 +162,7 @@ const networks = [
               >
                 <UTooltip text="Daftar Isi">
                   <UButton
+                    aria-label="Daftar Isi"
                     size="xs"
                     square
                     color="white"
@@ -200,6 +201,7 @@ const networks = [
                 >
                   <UTooltip text="Bagikan Artikel">
                     <UButton
+                      aria-label="Bagikan Artikel"
                       size="xs"
                       color="white"
                       trailing-icon="i-ph-share-fat-duotone"
