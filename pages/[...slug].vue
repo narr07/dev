@@ -4,15 +4,15 @@ const { page } = useContent()
 defineOgImageComponent('OgImage', {
   title: page.title,
 })
-// useSeoMeta({
-//   title: () => page.title,
-//   description: () => page.description,
-//   ogImage: () => `https://dev-permadi.vercel.app/__og-image__/image${page._path}/og.png`,
-//   twitterTitle: '[twitter:title]',
-//   twitterDescription: '[twitter:description]',
-//   twitterImage: () => `https://dev-permadi.vercel.app/__og-image__/image${page._path}/og.png`,
-//   twitterCard: 'summary_large_image',
-// })
+useSeoMeta({
+  title: () => page.title,
+  description: () => page.description,
+  // ogImage: () => `https://dev-permadi.vercel.app/__og-image__/image${page._path}/og.png`,
+  twitterTitle: () => page.title,
+  twitterDescription: () => page.description,
+  // twitterImage: () => `https://dev-permadi.vercel.app/__og-image__/image${page._path}/og.png`,
+  // twitterCard: 'summary_large_image',
+})
 
 // useSeoMeta({
 //   title: () => page.title,
@@ -23,10 +23,10 @@ defineOgImageComponent('OgImage', {
 //   twitterImage: '[twitter:image]',
 //   twitterCard: 'summary',
 // })
-useSeoMeta({
-  title: () => page.title,
-  description: () => page.description,
-})
+// useSeoMeta({
+//   title: () => page.title,
+//   description: () => page.description,
+// })
 useHead({
   htmlAttrs: {
     lang: 'id',
