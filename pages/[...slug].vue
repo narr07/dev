@@ -12,12 +12,16 @@ defineOgImageComponent('OgImage', {
 //   twitterCard: 'summary_large_image',
 // })
 
+// useSeoMeta({
+//   ogImage: '[og:image]',
+//   twitterTitle: '[twitter:title]',
+//   twitterDescription: '[twitter:description]',
+//   twitterImage: '[twitter:image]',
+//   twitterCard: 'summary',
+// })
 useSeoMeta({
-  ogImage: '[og:image]',
-  twitterTitle: '[twitter:title]',
-  twitterDescription: '[twitter:description]',
-  twitterImage: '[twitter:image]',
-  twitterCard: 'summary',
+  title: () => page.value?.title,
+  description: () => page.value?.description,
 })
 
 useHead({
