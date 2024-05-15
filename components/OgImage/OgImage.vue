@@ -33,7 +33,7 @@ defineProps({
           class="h-20 w-20 rounded ml-8"
         >
       </h1>
-      <p
+      <div
         class="text-gray-200  line-clamp-2 leading-tight pr-10"
         :class="description?.length > 100 ? 'text-3xl' : 'text-5xl'"
       />
