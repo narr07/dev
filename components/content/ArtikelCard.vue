@@ -69,9 +69,10 @@ const id = computed(() => {
             :src="article.img"
             :alt="article.title"
             :title="article.title"
-            loading="lazy"
+
             format="webp"
             height="500"
+            sizes="100vw sm:50vw md:400px lg:500px"
             width="500"
             :placeholder="[50, 25, 75, 5]"
           />

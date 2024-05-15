@@ -9,8 +9,15 @@ import DocsSearchButton from './DocsSearchButton.vue'
       <UContainer>
         <UCard>
           <div class="flex justify-between items-center flex-row">
-            <ULink to="/">
-              <Logo /></ULink>
+            <UTooltip
+              text="Home"
+              placement="bottom"
+              :popper="{ arrow: true }"
+            >
+              <ULink to="/">
+                <Logo />
+              </ULink>
+            </UTooltip>
             <div class="flex">
               <div>
                 <ContentNavigation v-slot="{ navigation }">

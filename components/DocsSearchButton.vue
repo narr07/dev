@@ -117,12 +117,18 @@ function onSelect(option: any) {
 
 <template>
   <div>
-    <UButton
-      icon="i-ph-magnifying-glass-duotone"
-      color="gray"
-      variant="ghost"
-      @click="isOpen = true"
-    />
+    <UTooltip
+      text="Pencarian"
+      placement="bottom"
+      :popper="{ arrow: true }"
+    >
+      <UButton
+        icon="i-ph-magnifying-glass-duotone"
+        color="gray"
+        variant="ghost"
+        @click="isOpen = true"
+      />
+    </UTooltip>
     <UModal
       v-model="isOpen"
       :ui="{

@@ -61,7 +61,8 @@ const isOpen = ref(false)
         :alt="galeri.title"
         width="500"
         height="500"
-        loading="lazy"
+
+        sizes="100vw sm:50vw md:400px lg:500px"
         :title="galeri.title"
         format="webp"
         :modifiers="{ smart: true }"
@@ -105,7 +106,7 @@ const isOpen = ref(false)
             :src="galeri.image"
             :alt="galeri.title"
             format="webp"
-
+            sizes="100vw sm:50vw md:400px lg:500px"
             :modifiers="{ smart: true }"
             quality="80"
             height="500"
