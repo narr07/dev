@@ -22,10 +22,12 @@ const ariaLabel = computed(() => {
       :popper="{ arrow: true }"
     >
       <UButton
+
         :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
         color="gray"
         variant="ghost"
         :aria-label="ariaLabel"
+
         @click="isDark = !isDark"
       />
     </UTooltip>

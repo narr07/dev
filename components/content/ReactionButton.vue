@@ -7,7 +7,7 @@
       <UButton
         icon="i-ph-thumbs-up-duotone"
         color="gray"
-        @click="sendReaction('like'), showToast()"
+        @click="sendReaction('like')"
       />
     </UChip>
   </div>
@@ -18,10 +18,8 @@
 type ReactionType = 'like'
 
 interface Reaction {
-  article_id: string
-  ip_address: string
   reaction_type: ReactionType
-  count?: number
+  count: number
 }
 
 const props = defineProps({
@@ -33,7 +31,6 @@ const props = defineProps({
 
 const reactions = ref<{ like: number }>({ like: 0 })
 const supabase = useSupabaseClient()
-const toast = useToast()
 
 const fetchReactions = async () => {
   console.log('Fetching reactions for article ID:', props.articleId)
@@ -46,7 +43,7 @@ const fetchReactions = async () => {
     console.log('Fetched reactions:', data)
     if (data) {
       const reactionCounts = (data as Reaction[]).reduce((acc: { [key in ReactionType]: number }, row: Reaction) => {
-        acc[row.reaction_type] = row.count || 0
+        acc[row.reaction_type] = row.count
         return acc
       }, { like: 0 })
       console.log('Setting reactions:', reactionCounts)
@@ -64,7 +61,6 @@ const sendReaction = async (reactionType: ReactionType) => {
 
   if (totalReactions >= maxReactions) {
     console.log(`You have reached the maximum number of reactions for this article.`)
-    showToast()
     return
   }
 
@@ -72,16 +68,11 @@ const sendReaction = async (reactionType: ReactionType) => {
   const ipAddress = await getIpAddress()
   console.log('IP Address:', ipAddress)
 
-  // Tipe data yang sesuai saat melakukan insert
-  const newReaction: Reaction = {
-    article_id: props.articleId,
-    ip_address: ipAddress,
-    reaction_type: reactionType,
-  }
-
   const { error } = await supabase
-    .from<Reaction>('reactions')
-    .insert([newReaction])
+    .from('reactions')
+    .insert([
+      { article_id: props.articleId, ip_address: ipAddress, reaction_type: reactionType },
+    ])
 
   if (error) {
     console.error('Error sending reaction:', error)
@@ -104,14 +95,6 @@ const getIpAddress = async (): Promise<string> => {
     console.error('Error fetching IP address:', error)
     return ''
   }
-}
-
-const showToast = () => {
-  toast.add({
-    title: 'Notification',
-    description: 'You have reached the maximum number of reactions for this article.',
-    duration: 2000, // Durasi dalam milidetik
-  })
 }
 
 onMounted(() => {
