@@ -66,6 +66,12 @@ const networks = [
   { network: 'twitter', icon: 'i-ph-twitter-logo-duotone' },
   { network: 'whatsapp', icon: 'i-ph-whatsapp-logo-duotone' },
 ]
+
+const isLoaded = ref(false)
+const hashtags = computed(() => {
+  return page.value?.tags ? page.value.tags.join(', ') : ''
+})
+
 </script>
 
 <template>
@@ -80,11 +86,9 @@ const networks = [
         <UCard
           :ui="
             {
-
               header: {
                 padding: 'px-2 py-0 sm:py-0 sm:px-4',
               },
-
             }
           "
           class="ring-1  ring-primary-800 hover:ring-gray-600 dark:hover:ring-gray-800   dark:ring-gray-800  p-2  sm:p-3 bg-yellow dark:bg-gray-900"
@@ -94,38 +98,41 @@ const networks = [
               <p v-if="page?.author">
                 Penulis: {{ page.author }}
               </p>
-              <p v-else />
-              <UBadge
-
-                size="xs"
-                color="white"
-              >
+              <USkeleton v-else class="h-4 w-24" />
+              <UBadge v-if="page?.date" size="xs" color="white">
                 <time>
                   {{ formatDate(page.date) }}
                 </time>
               </UBadge>
+              <USkeleton v-else class="h-4 w-16" />
             </div>
           </template>
-          <NuxtImg
-            :src="page.img"
-            :alt="page.title"
-            :title="page.title"
-
-            format="webp"
-            height="500"
-            width="500"
-            sizes="sm:200px md:400px lg:800px"
-            :placeholder="[50, 25, 75, 5]"
-            class="w-full object-cover rounded"
-          />
+          <div class="aspect-w-16 aspect-h-9 relative">
+            <NuxtImg
+              v-show="isLoaded"
+              class="w-full object-cover rounded"
+              :src="page.img"
+              :alt="page.title"
+              :title="page.title"
+              format="webp"
+              height="500"
+              width="500"
+              sizes="sm:200px md:400px lg:800px"
+              :placeholder="[50, 25, 75, 5]"
+              @load="isLoaded = true"
+            />
+            <USkeleton v-show="!isLoaded" class="w-full h-full object-cover rounded" :ui="{ rounded: 'rounded' }" />
+          </div>
           <div class="py-4 ">
-            <h1 class="font-bold text-xl md:text-g2 headline font-title leading-tight title text-left">
+            <h1 v-if="isLoaded" class="font-bold text-xl md:text-g2 headline font-title leading-tight title text-left">
               {{ page.title }}
             </h1>
+            <USkeleton v-else class="h-8 w-full" />
           </div>
-          <p class="leading-tight text-sm">
+          <p v-if="isLoaded" class="leading-tight text-sm">
             {{ page.description }}
           </p>
+          <USkeleton v-else class="h-4 w-full" />
           <template #footer>
             <div v-if="page?.tags">
               <div class="flex flex-wrap ">
@@ -135,13 +142,10 @@ const networks = [
                   :to="`/tags#${tag}`"
                   class="uppercase"
                 >
-                  <UBadge
-                    class="mr-2"
-                    size="xs"
-                    color="black"
-                  >
+                  <UBadge v-if="isLoaded" class="mr-2" size="xs" color="black">
                     {{ tag }}
                   </UBadge>
+                  <USkeleton v-else class="h-4 w-16 mr-2" />
                 </NuxtLink>
               </div>
             </div>
@@ -152,12 +156,13 @@ const networks = [
           class="my-4 ring-gray-200 dark:ring-gray-800  flex-1 flex flex-col shadow hover:ring-gray-200 dark:hover:ring-ring-gray-800"
         >
           <div
+            v-if="isLoaded"
             class="prose mx-auto prose-permadi prose-img:mx-auto prose-img:w-full prose-sm sm:prose-base  dark:prose-invert"
           >
             <slot />
           </div>
+          <USkeleton v-else class="w-full h-64" />
         </UCard>
-        <!-- Tambahkan Log untuk Debugging -->
         <!-- Tambahkan Log untuk Debugging -->
 
         <!-- sticki butom -->
@@ -166,10 +171,7 @@ const networks = [
             class="inline-block relative group isolate rounded-lg background-gradient ring-1 ring-gray-200 dark:ring-gray-800  p-1  sm:p-3 bg-white dark:bg-gray-900 "
           >
             <div class="flex items-center gap-x-1.5">
-              <UPopover
-                :popper="{ arrow: true }"
-                overlay
-              >
+              <UPopover :popper="{ arrow: true }" overlay>
                 <UTooltip text="Daftar Isi">
                   <UButton
                     aria-label="Daftar Isi"
@@ -185,7 +187,7 @@ const networks = [
                     <div
                       v-for="link of page.body.toc.links"
                       :key="link.id"
-                      class="flex flex-col  "
+                      class="flex flex-col"
                       :class="{ 'ml-1': link.depth === 3 }"
                     >
                       <a
@@ -203,12 +205,8 @@ const networks = [
                 </template>
               </UPopover>
               <div class="block h-3 border-e border-gray-300 mx-1 dark:border-gray-600" />
-
               <div class="hs-tooltip inline-block">
-                <UPopover
-                  :popper="{ arrow: true }"
-                  overlay
-                >
+                <UPopover :popper="{ arrow: true }" overlay>
                   <UTooltip text="Bagikan Artikel">
                     <UButton
                       aria-label="Bagikan Artikel"
@@ -228,7 +226,7 @@ const networks = [
                           :title="page.title"
                           :description="page.description"
                           :quote="page.quote"
-                          :hashtags="page.tags"
+                          :hashtags="hashtags"
                           twitter-user="dinarpermadi07"
                         >
                           <UButton
@@ -243,13 +241,12 @@ const networks = [
               </div>
               <div class="block h-3 border-e border-gray-300 mx-1 dark:border-gray-600" />
               <div v-if="page && contentId">
-   
-    <!-- Konten artikel lainnya -->
-    <ReactionButton :content-id="contentId" />
-  </div>
-  <div v-else>
-    <p>Loading...</p>
-  </div>
+                <!-- Konten artikel lainnya -->
+                <ReactionButton :content-id="contentId" />
+              </div>
+              <div v-else>
+                <USkeleton class="h-8 w-24" />
+              </div>
             </div>
           </div>
         </div>

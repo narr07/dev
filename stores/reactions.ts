@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 export const useReactionsStore = defineStore('reactions', {
   state: () => ({
     reactions: {} as Record<string, { like: number }>,
-    ipReactions: {} as Record<string, Record<string, number>>,
+    ipReactions: {} as Record<string, Record<string, { count: number, lastLiked: number }>>,
   }),
   actions: {
     async fetchReactions(contentId: string) {
@@ -36,6 +36,7 @@ export const useReactionsStore = defineStore('reactions', {
     async addReaction(contentId: string, reactionType: 'like') {
       const toast = useToast()
       const maxReactions = 10
+      const cooldownTime = 5 * 60 * 1000 // 5 menit dalam milidetik
       const ipAddress = await getIpAddress()
 
       // Initialize IP reactions if not present
@@ -43,17 +44,24 @@ export const useReactionsStore = defineStore('reactions', {
         this.ipReactions[contentId] = {}
       }
 
-      if (!this.ipReactions[contentId][ipAddress]) {
-        this.ipReactions[contentId][ipAddress] = 0
+      const currentTime = Date.now()
+      const ipData = this.ipReactions[contentId][ipAddress]
+
+      if (!ipData) {
+        this.ipReactions[contentId][ipAddress] = { count: 0, lastLiked: 0 }
       }
 
-      if (this.ipReactions[contentId][ipAddress] >= maxReactions) {
+      if (ipData && ipData.count >= maxReactions && (currentTime - ipData.lastLiked) < cooldownTime) {
         toast.add({
           title: 'Maximum Reactions Reached',
-          description: `You have reached the maximum number of reactions (${maxReactions}) for this content.`,
+          description: `You have reached the maximum number of reactions (${maxReactions}) for this content. Please try again later.`,
           icon: 'i-octicon-alert-24',
         })
         return
+      }
+
+      if (ipData && (currentTime - ipData.lastLiked) >= cooldownTime) {
+        ipData.count = 0 // Reset count after cooldown
       }
 
       if (!this.reactions[contentId]) {
@@ -62,7 +70,8 @@ export const useReactionsStore = defineStore('reactions', {
       this.reactions[contentId][reactionType]++
       console.log('Local reactions updated:', this.reactions[contentId])
 
-      this.ipReactions[contentId][ipAddress]++
+      this.ipReactions[contentId][ipAddress].count++
+      this.ipReactions[contentId][ipAddress].lastLiked = currentTime
       localStorage.setItem(`ipReactions_${contentId}`, JSON.stringify(this.ipReactions[contentId]))
 
       // Simpan jumlah reaksi lokal untuk sinkronisasi nanti

@@ -1,6 +1,7 @@
 <!-- eslint-disable nuxt/prefer-import-meta -->
 <script setup lang="ts">
 import { useContentPreview } from '#imports'
+import { ref, computed } from 'vue'
 
 interface Galeri {
   _path: string
@@ -9,7 +10,6 @@ interface Galeri {
   image: string
   tags: string[]
   tools: string[]
-
 }
 
 const props = defineProps({
@@ -32,21 +32,12 @@ const id = computed(() => {
   return (process.dev || useContentPreview()?.isEnabled()) ? props.galeri?._id : undefined
 })
 const isOpen = ref(false)
+const isLoaded = ref(false)
+
 </script>
 
 <template>
   <div
-    v-if="!galeri.image"
-    class="flex items-center space-x-4"
-  >
-    <USkeleton class="h-12 w-12" :ui="{ rounded: 'rounded-full' }" />
-    <div class="space-y-2">
-      <USkeleton class="h-4 w-[250px]" />
-      <USkeleton class="h-4 w-[200px]" />
-    </div>
-  </div>
-  <div
-  v-else
     v-if="galeri._path && galeri.title"
     :data-content-id="id"
     class="rounded-lg py-2 break-inside"
@@ -56,17 +47,17 @@ const isOpen = ref(false)
         class="absolute bottom-0 p-1 bg-primary-700 dark:bg-opacity-75 dark:bg-permadi-800 bg-opacity-75  w-full rounded-b"
       >
         <div class="w-full flex justify-between items-center">
-          <p class="text-primary-200 text-xs">
+          <USkeleton v-if="!isLoaded" class="h-4 w-24" />
+          <p v-else class="text-primary-200 text-xs">
             {{ galeri.title }}
           </p>
 
-          <UIcon
-            :name="galeri.tools[0].icon"
-            class="text-primary-200"
-          />
+          <USkeleton v-if="!isLoaded" class="h-5 w-5" :ui="{ rounded: 'rounded-full' }" />
+          <UIcon v-else :name="galeri.tools[0].icon" class="text-primary-200" />
         </div>
       </div>
       <NuxtImg
+        v-show="isLoaded"
         class="w-full h-auto object-contain rounded"
         :src="galeri.image"
         :alt="galeri.title"
@@ -78,8 +69,10 @@ const isOpen = ref(false)
         :title="galeri.title"
         format="webp"
         :modifiers="{ smart: true }"
+        @load="isLoaded = true"
         @click="isOpen = true"
       />
+      <USkeleton v-show="!isLoaded" class="w-full h-64 rounded" :ui="{ rounded: 'rounded' }" />
     </div>
     <UModal
       v-model="isOpen"
@@ -102,7 +95,7 @@ const isOpen = ref(false)
         "
       >
         <template #header>
-          <div class="w-full  flex justify-end">
+          <div class="w-full flex justify-end">
             <UButton
               color="gray"
               variant="ghost"
@@ -114,6 +107,7 @@ const isOpen = ref(false)
         </template>
         <div class="w-full mx-auto">
           <NuxtImg
+            v-show="isLoaded"
             class="w-full object-cover rounded-md aspect-video"
             :src="galeri.image"
             :alt="galeri.title"
@@ -124,7 +118,9 @@ const isOpen = ref(false)
             height="500"
             width="500"
             :placeholder="[50, 25, 75, 5]"
+            @load="isLoaded = true"
           />
+          <USkeleton v-show="!isLoaded" class="w-full rounded-md aspect-video" :ui="{ rounded: 'rounded-md' }" />
         </div>
         <template #footer>
           <p class="">
