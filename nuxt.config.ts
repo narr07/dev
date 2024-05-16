@@ -11,6 +11,8 @@ export default defineNuxtConfig({
     'nuxt-delay-hydration',
     '@vueuse/nuxt',
     '@nuxtjs/supabase',
+    '@pinia/nuxt', // needed
+    '@pinia-plugin-persistedstate/nuxt',
   ],
   eslint: {
     config: {

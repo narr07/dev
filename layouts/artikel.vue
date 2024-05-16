@@ -1,27 +1,35 @@
 <!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <!-- eslint-disable unused-imports/no-unused-vars -->
 <script setup lang="ts">
-const emit = defineEmits(['move'])
-const { page } = useContent()
+
+
+// Ambil rute saat ini
 const route = useRoute()
+const { page } = useContent()
+
+// Buat computed property untuk mendapatkan contentId dari page data
+const contentId = computed(() => {
+  return page.value?._id || null
+})
+
+// Debugging untuk memastikan page data tersedia
+watch(page, () => {
+  console.log('Page data:', page.value)
+  if (!page.value) {
+    console.error('Page data is not available')
+  }
+})
+
+const emit = defineEmits(['move'])
 
 const article = ref<HTMLElement | null>(null)
 
-// if (page.value && page.value.cover) {
-//   useHead({
-//     meta: [
-//       { property: 'og:image', content: page.value.cover },
-//     ],
-//   })
-// }
+const parentPath = computed(() => {
+  const pathTabl = route.path.split('/')
+  pathTabl.pop()
+  return pathTabl.join('/')
+})
 
-const parentPath = computed(
-  () => {
-    const pathTabl = route.path.split('/')
-    pathTabl.pop()
-    return pathTabl.join('/')
-  },
-)
 const router = useRouter()
 const { activeHeadings, updateHeadings } = useScrollspy()
 watch(() => route.path, () => {
@@ -58,16 +66,6 @@ const networks = [
   { network: 'twitter', icon: 'i-ph-twitter-logo-duotone' },
   { network: 'whatsapp', icon: 'i-ph-whatsapp-logo-duotone' },
 ]
-
-// Fungsi untuk mengonversi article ID menjadi integer
-function getArticleId(id: string | number): number {
-  const parsedId = parseInt(id as string, 10)
-  if (isNaN(parsedId)) {
-    console.error(`Invalid article ID: ${id}`)
-    return 0 // atau nilai default yang sesuai
-  }
-  return parsedId
-}
 </script>
 
 <template>
@@ -244,10 +242,14 @@ function getArticleId(id: string | number): number {
                 </UPopover>
               </div>
               <div class="block h-3 border-e border-gray-300 mx-1 dark:border-gray-600" />
-              <div>
-                <!-- Komponen ReactionButton -->
-                <ReactionButton :article-id="page._id" />
-              </div>
+              <div v-if="page && contentId">
+   
+    <!-- Konten artikel lainnya -->
+    <ReactionButton :content-id="contentId" />
+  </div>
+  <div v-else>
+    <p>Loading...</p>
+  </div>
             </div>
           </div>
         </div>

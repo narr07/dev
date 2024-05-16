@@ -25,6 +25,7 @@
     "@nuxt/ui": "latest",
     "@nuxtjs/seo": "latest",
     "@nuxtjs/supabase": "latest",
+    "@pinia/nuxt": "^0.5.1",
     "@vueuse/nuxt": "^10.9.0",
     "nuxt": "^3.11.2",
     "sharp": "^0.33.3",
@@ -33,6 +34,7 @@
     "vue-social-sharing": "next"
   },
   "devDependencies": {
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "nuxt-delay-hydration": "^1.3.3"
   }
 }

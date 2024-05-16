@@ -29,6 +29,7 @@ import DocsSearchButton from './DocsSearchButton.vue'
                       v-for="link of navigation"
                       :key="link._path"
                     >
+
                       <UTooltip
                         :text="link.title"
                         placement="bottom"

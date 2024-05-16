@@ -36,6 +36,17 @@ const isOpen = ref(false)
 
 <template>
   <div
+    v-if="!galeri.image"
+    class="flex items-center space-x-4"
+  >
+    <USkeleton class="h-12 w-12" :ui="{ rounded: 'rounded-full' }" />
+    <div class="space-y-2">
+      <USkeleton class="h-4 w-[250px]" />
+      <USkeleton class="h-4 w-[200px]" />
+    </div>
+  </div>
+  <div
+  v-else
     v-if="galeri._path && galeri.title"
     :data-content-id="id"
     class="rounded-lg py-2 break-inside"
