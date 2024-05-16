@@ -49,7 +49,6 @@ function scrollToHeading(id: string) {
 }
 
 const networks = [
-
   { network: 'email', icon: 'i-ph-envelope-duotone' },
   { network: 'facebook', icon: 'i-ph-facebook-logo-duotone' },
   { network: 'linkedin', icon: 'i-ph-linkedin-logo-duotone' },
@@ -59,6 +58,16 @@ const networks = [
   { network: 'twitter', icon: 'i-ph-twitter-logo-duotone' },
   { network: 'whatsapp', icon: 'i-ph-whatsapp-logo-duotone' },
 ]
+
+// Fungsi untuk mengonversi article ID menjadi integer
+function getArticleId(id: string | number): number {
+  const parsedId = parseInt(id as string, 10)
+  if (isNaN(parsedId)) {
+    console.error(`Invalid article ID: ${id}`)
+    return 0 // atau nilai default yang sesuai
+  }
+  return parsedId
+}
 </script>
 
 <template>
@@ -150,6 +159,8 @@ const networks = [
             <slot />
           </div>
         </UCard>
+        <!-- Tambahkan Log untuk Debugging -->
+        <!-- Tambahkan Log untuk Debugging -->
 
         <!-- sticki butom -->
         <div class="sticky bottom-3 inset-x-0 text-center">
@@ -231,6 +242,11 @@ const networks = [
                     </div>
                   </template>
                 </UPopover>
+              </div>
+              <div class="block h-3 border-e border-gray-300 mx-1 dark:border-gray-600" />
+              <div>
+                <!-- Komponen ReactionButton -->
+                <ReactionButton :article-id="page._id" />
               </div>
             </div>
           </div>

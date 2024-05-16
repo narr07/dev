@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
     'nuxt-delay-hydration',
     '@vueuse/nuxt',
+    '@nuxtjs/supabase',
   ],
   eslint: {
     config: {
@@ -84,6 +85,9 @@ export default defineNuxtConfig({
         'json', 'js', 'ts', 'html', 'css', 'vue', 'diff', 'shell', 'markdown', 'yaml', 'bash', 'ini', 'c', 'cpp',
       ],
     },
+  },
+  supabase: {
+    redirect: false,
   },
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
