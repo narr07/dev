@@ -48,7 +48,8 @@ function scrollToHeading(id: string) {
   if (element) {
     window.setTimeout(() => {
       window.scrollBy({
-        top: element.getBoundingClientRect().top - 80,
+        top: element.getBoundingClientRect().top -50,
+        // top: element.getBoundingClientRect().top - 80,
         behavior: 'smooth',
       })
     }, 100)
@@ -71,7 +72,14 @@ const isLoaded = ref(false)
 const hashtags = computed(() => {
   return page.value?.tags ? page.value.tags.join(', ') : ''
 })
+defineOgImageComponent('OgImage', {
+  title: page.title,
+})
+useSeoMeta({
+  title: () => page.title,
+  description: () => page.description,
 
+})
 </script>
 
 <template>
