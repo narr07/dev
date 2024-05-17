@@ -1,8 +1,4 @@
 <script lang="ts" setup>
-const { page } = useContent()
-
-
-
 useHead({
   htmlAttrs: {
     lang: 'id',
@@ -14,6 +10,7 @@ useHead({
       href: '/favicon.png',
     },
   ],
+
 })
 </script>
 

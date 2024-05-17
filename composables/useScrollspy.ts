@@ -21,15 +21,16 @@ export function useScrollspy() {
   }
 
   watch(visibleHeadings, (newVal, oldVal) => {
-    if (newVal.length === 0)
-      activeHeadings.value = oldVal
-    else {
-      activeHeadings.value = newVal
-      // Pastikan ID pertama selalu menjadi default jika ada
-      if (!activeHeadings.value.includes(newVal[0])) {
-        activeHeadings.value.unshift(newVal[0])
+    nextTick(() => { // <-- Tambahkan nextTick di sini
+      if (newVal.length === 0)
+        activeHeadings.value = oldVal
+      else {
+        activeHeadings.value = newVal
+        if (!activeHeadings.value.includes(newVal[0])) {
+          activeHeadings.value.unshift(newVal[0])
+        }
       }
-    }
+    })
   })
 
   // Buat intersection observer

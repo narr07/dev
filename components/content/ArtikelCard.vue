@@ -1,6 +1,4 @@
 <script setup lang="ts">
-
-
 interface Article {
   _path: string
   title: string
@@ -68,7 +66,7 @@ const isLoaded = ref(false)
           <NuxtImg
             v-show="isLoaded"
             class="w-full object-cover rounded"
-            :src="article.img"
+            :src="article.img + '/m/1000x0/smart/'"
             :alt="article.title"
             :title="article.title"
             format="webp"
@@ -85,16 +83,29 @@ const isLoaded = ref(false)
           />
         </div>
         <div class="w-full justify-end flex py-2">
-          <USkeleton v-if="!isLoaded" class="h-4 w-24" />
-          <UBadge v-else size="xs" color="gray">
+          <USkeleton
+            v-if="!isLoaded"
+            class="h-4 w-24"
+          />
+          <UBadge
+            v-else
+            size="xs"
+            color="gray"
+          >
             <time>
               {{ formatDate(article.date) }}
             </time>
           </UBadge>
         </div>
         <div class="mb-2">
-          <USkeleton v-if="!isLoaded" class="h-4 w-3/4" />
-          <h2 v-else class="font-semibold font-body leading-tight text-gray-800 dark:text-gray-300">
+          <USkeleton
+            v-if="!isLoaded"
+            class="h-4 w-3/4"
+          />
+          <h2
+            v-else
+            class="font-semibold font-body leading-tight text-gray-800 dark:text-gray-300"
+          >
             {{ article.title }}
           </h2>
         </div>
@@ -109,8 +120,16 @@ const isLoaded = ref(false)
             :to="`/tags#${tag}`"
             class="uppercase"
           >
-            <USkeleton v-if="!isLoaded" class="h-4 w-16 mr-2" />
-            <UBadge v-else color="black" size="xxs" class="mr-2">
+            <USkeleton
+              v-if="!isLoaded"
+              class="h-4 w-16 mr-2"
+            />
+            <UBadge
+              v-else
+              color="black"
+              size="xxs"
+              class="mr-2"
+            >
               {{ tag }}
             </UBadge>
           </NuxtLink>

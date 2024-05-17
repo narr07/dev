@@ -1,8 +1,6 @@
 <!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <!-- eslint-disable unused-imports/no-unused-vars -->
 <script setup lang="ts">
-
-
 // Ambil rute saat ini
 const route = useRoute()
 const { page } = useContent()
@@ -22,10 +20,6 @@ watch(page, () => {
 
 const emit = defineEmits(['move'])
 
-
-
-
-
 const { activeHeadings, updateHeadings } = useScrollspy()
 watch(() => route.path, () => {
   setTimeout(() => {
@@ -43,7 +37,7 @@ function scrollToHeading(id: string) {
   if (element) {
     window.setTimeout(() => {
       window.scrollBy({
-        top: element.getBoundingClientRect().top - 50,
+        top: element.getBoundingClientRect().top - 80,
         // top: element.getBoundingClientRect().top - 80,
         behavior: 'smooth',
       })
@@ -82,10 +76,10 @@ useSeoMeta({
     <UContainer class="py-14 scroll-smooth md:py-16">
       <div class="max-w-3xl mx-auto">
         <UBreadcrumb
-        :ui="{
-          active:  'text-primary-950 dark:text-yellow',
-          inactive: ' text-gray-800 dark:text-gray-200',
-        }"
+          :ui="{
+            active: 'text-primary-950 dark:text-yellow',
+            inactive: ' text-gray-800 dark:text-gray-200',
+          }"
           class="my-4 px-2 shadow py-1 ring-1 ring-gray-200 dark:ring-gray-800 rounded-lg text-lg  bg-primary-200 text-permadi-800 dark:text-permadi-200  dark:bg-gray-900  inset-x-0 text-center z-30"
           divider=">"
           :links="[{ label: 'Home', to: '/' }, { label: 'Artikel', to: '/artikel' }]"
@@ -105,13 +99,23 @@ useSeoMeta({
               <p v-if="page?.author">
                 Penulis: {{ page.author }}
               </p>
-              <USkeleton v-else class="h-4 w-24" />
-              <UBadge v-if="page?.date" size="xs" color="white">
+              <USkeleton
+                v-else
+                class="h-4 w-24"
+              />
+              <UBadge
+                v-if="page?.date"
+                size="xs"
+                color="white"
+              >
                 <time>
                   {{ formatDate(page.date) }}
                 </time>
               </UBadge>
-              <USkeleton v-else class="h-4 w-16" />
+              <USkeleton
+                v-else
+                class="h-4 w-16"
+              />
             </div>
           </template>
           <div class="aspect-w-16 aspect-h-9 relative">
@@ -129,18 +133,34 @@ useSeoMeta({
               :placeholder="[100, 60, 35, 5]"
               @load="isLoaded = true"
             />
-            <USkeleton v-show="!isLoaded" class="w-full h-full object-cover rounded" :ui="{ rounded: 'rounded' }" />
+            <USkeleton
+              v-show="!isLoaded"
+              class="w-full h-full object-cover rounded"
+              :ui="{ rounded: 'rounded' }"
+            />
           </div>
           <div class="py-4 ">
-            <h1 v-if="isLoaded" class="font-bold text-xl md:text-g2 headline font-title leading-tight title text-left">
+            <h1
+              v-if="isLoaded"
+              class="font-bold text-xl md:text-g2 headline font-title leading-tight title text-left"
+            >
               {{ page.title }}
             </h1>
-            <USkeleton v-else class="h-8 w-full" />
+            <USkeleton
+              v-else
+              class="h-8 w-full"
+            />
           </div>
-          <p v-if="isLoaded" class="leading-tight text-sm">
+          <p
+            v-if="isLoaded"
+            class="leading-tight text-sm"
+          >
             {{ page.description }}
           </p>
-          <USkeleton v-else class="h-4 w-full" />
+          <USkeleton
+            v-else
+            class="h-4 w-full"
+          />
           <template #footer>
             <div v-if="page?.tags">
               <div class="flex flex-wrap ">
@@ -153,10 +173,18 @@ useSeoMeta({
                   :title="tag"
                   rel="noopener noreferrer nofollow"
                 >
-                  <UBadge v-if="isLoaded" class="mr-2" size="xs" color="black">
+                  <UBadge
+                    v-if="isLoaded"
+                    class="mr-2"
+                    size="xs"
+                    color="black"
+                  >
                     {{ tag }}
                   </UBadge>
-                  <USkeleton v-else class="h-4 w-16 mr-2" />
+                  <USkeleton
+                    v-else
+                    class="h-4 w-16 mr-2"
+                  />
                 </NuxtLink>
               </div>
             </div>
@@ -172,7 +200,10 @@ useSeoMeta({
           >
             <slot />
           </div>
-          <USkeleton v-else class="w-full h-64" />
+          <USkeleton
+            v-else
+            class="w-full h-64"
+          />
         </UCard>
         <!-- Tambahkan Log untuk Debugging -->
 
@@ -182,7 +213,10 @@ useSeoMeta({
             class="inline-block relative group isolate rounded-lg background-gradient ring-1 ring-gray-200 dark:ring-gray-800  p-1  sm:p-3 bg-white dark:bg-gray-900 "
           >
             <div class="flex items-center gap-x-1.5">
-              <UPopover :popper="{ arrow: true }" overlay>
+              <UPopover
+                :popper="{ arrow: true }"
+                overlay
+              >
                 <UTooltip text="Daftar Isi">
                   <UButton
                     aria-label="Daftar Isi"
@@ -200,28 +234,30 @@ useSeoMeta({
                       :key="link.id"
                       class="flex flex-col"
                       :class="{ 'ml-1': link.depth === 3 }"
+                      @click="close"
                     >
-                    <ClientOnly>
-
-                    
-                      <a
-                        class="text-sm my-1 px-2 p-1 line-clamp-1 ring-1 rounded-md ring-gray-200 hover:ring-gray-400 dark:hover:ring-gray-600  dark:ring-gray-800 text-left"
-                        :href="`#${link.id}`"
-                        :class="[activeHeadings.includes(link.id) ? 'text-primary-800 bg-yellow dark:bg-yellow-700 dark:text-primary-900' : 'hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300']"
-                        @click.prevent="scrollToHeading(link.id)"
-                      >
-                        <p @click="close">
-                          {{ link.text }}
-                        </p>
-                      </a>
-                    </ClientOnly>
+                      <ClientOnly>
+                        <a
+                          class="text-sm my-1 px-2 p-1 line-clamp-1 ring-1 rounded-md ring-gray-200 hover:ring-gray-400 dark:hover:ring-gray-600  dark:ring-gray-800 text-left"
+                          :href="`#${link.id}`"
+                          :class="[activeHeadings.includes(link.id) ? 'text-primary-800 bg-yellow dark:bg-yellow-700 dark:text-primary-900' : 'hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300']"
+                          @click.prevent="scrollToHeading(link.id)"
+                        >
+                          <p>
+                            {{ link.text }}
+                          </p>
+                        </a>
+                      </ClientOnly>
                     </div>
                   </div>
                 </template>
               </UPopover>
               <div class="block h-3 border-e border-gray-300 mx-1 dark:border-gray-600" />
               <div class="hs-tooltip inline-block">
-                <UPopover :popper="{ arrow: true }" overlay>
+                <UPopover
+                  :popper="{ arrow: true }"
+                  overlay
+                >
                   <UTooltip text="Bagikan Artikel">
                     <UButton
                       aria-label="Bagikan Artikel"

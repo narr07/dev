@@ -26,6 +26,9 @@ export default defineNuxtConfig({
     defaultLocale: 'id', // not needed if you have @nuxtjs/i18n installed
     themeColor: '#2B6964',
   },
+  colorMode: {
+    preference: 'light',
+  },
   schemaOrg: {
     identity: {
       type: 'Person',
@@ -138,7 +141,7 @@ export default defineNuxtConfig({
   },
 
   image: {
-    format: ['webp'],
+
     storyblok: {
       baseURL: 'https://a.storyblok.com',
     },
