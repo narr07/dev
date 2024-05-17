@@ -7,7 +7,7 @@
         </p>
       </div>
       <NuxtImg
-        sizes="sm:200px md:400px lg:800px"
+        v-if="url"
         :src="url"
         :alt="title"
         format="webp"
@@ -15,8 +15,9 @@
         height="500"
         loading="lazy"
         :title="title"
-        class=" h-48  sm:h-72 md:h-80 lg:h-96 w-full object-cover aspect-video bg-cover rounded-md "
-        :placeholder="[50, 25, 75, 5]"
+        class=" h-48  sm:h-72 md:h-80 lg:h-96 w-full object-cover aspect-video bg-cover rounded-md"
+        sizes="100vw sm:100vw md:100vw lg:100px"
+        :placeholder="[100, 60, 35, 5]"
       />
     </div>
   </div>

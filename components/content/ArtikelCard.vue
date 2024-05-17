@@ -1,5 +1,6 @@
 <script setup lang="ts">
 
+
 interface Article {
   _path: string
   title: string
@@ -72,9 +73,9 @@ const isLoaded = ref(false)
             :title="article.title"
             format="webp"
             height="500"
-            sizes="100vw sm:50vw md:400px lg:500px"
+            sizes="100vw sm:100vw md:100vw lg:100px"
             width="500"
-            :placeholder="[50, 25, 75, 5]"
+            :placeholder="[100, 60, 35, 5]"
             @load="isLoaded = true"
           />
           <USkeleton

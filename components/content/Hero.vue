@@ -127,13 +127,13 @@ const tabitems = [{
         <!-- konten tab 1 -->
         <template #user>
           <UCard class="my-auto flex-grow h-full p-2">
-            <p>
+            <div>
               Saya <span class="text-permadi-950 dark:text-yellow font-bold">
                 Dinar Permadi Yusup,
               </span>
               Seorang guru SD yang menguasai bidang desain grafis dan pemograman. Saya memiliki keahlian dalam desain grafis dan menguasai beberapa bahasa pemrograman. Melalui website ini, Saya
               ingin berbagi pengetahuan dalam  belajar desain dan pemrograman. Saya lulusan Universitas Pendidikan Indonesia (UPI) dan saat ini bekerja sebagai guru di SDN Teja II
-            </p>
+            </div>
           </UCard>
         </template>
 

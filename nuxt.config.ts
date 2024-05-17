@@ -42,8 +42,15 @@ export default defineNuxtConfig({
     families: [
       { name: 'Rubik',
         provider: 'google',
+        weights: ['400', '700', '900'],
+        subsets: ['latin'],
+        display: 'swap',
+
       },
-      { name: 'Space Grotesk', provider: 'google' },
+      { name: 'Space Grotesk',
+        provider: 'google',
+        display: 'swap',
+      },
     ],
     defaults: {
       fallbacks: {
@@ -53,15 +60,7 @@ export default defineNuxtConfig({
       },
       preload: true,
       styles: ['normal', 'italic'],
-      subsets: [
-        'cyrillic-ext',
-        'cyrillic',
-        'greek-ext',
-        'greek',
-        'vietnamese',
-        'latin-ext',
-        'latin',
-      ],
+
     },
     assets: {
       prefix: '/_fonts',
@@ -143,5 +142,9 @@ export default defineNuxtConfig({
     storyblok: {
       baseURL: 'https://a.storyblok.com',
     },
+  },
+
+  delayHydration: {
+    mode: 'mount',
   },
 })

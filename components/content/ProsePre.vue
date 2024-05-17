@@ -37,6 +37,7 @@
               aria-label="Theme"
               gap="xs"
               square
+              
             >
               <UIcon
                 class="w-4 h-4"

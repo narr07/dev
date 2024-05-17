@@ -59,7 +59,7 @@ useSeoMeta({
               :alt="page.title"
               :title="page.title"
               loading="lazy"
-              :placeholder="[50, 25, 75, 5]"
+              :placeholder="[100, 60, 35, 5]"
             />
           </div>
 

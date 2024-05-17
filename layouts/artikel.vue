@@ -22,15 +22,10 @@ watch(page, () => {
 
 const emit = defineEmits(['move'])
 
-const article = ref<HTMLElement | null>(null)
 
-const parentPath = computed(() => {
-  const pathTabl = route.path.split('/')
-  pathTabl.pop()
-  return pathTabl.join('/')
-})
 
-const router = useRouter()
+
+
 const { activeHeadings, updateHeadings } = useScrollspy()
 watch(() => route.path, () => {
   setTimeout(() => {
@@ -40,7 +35,7 @@ watch(() => route.path, () => {
         ...document.querySelectorAll('h3'),
       ])
     }
-  }, 300)
+  }, 200)
 }, { immediate: true })
 
 function scrollToHeading(id: string) {
@@ -48,7 +43,7 @@ function scrollToHeading(id: string) {
   if (element) {
     window.setTimeout(() => {
       window.scrollBy({
-        top: element.getBoundingClientRect().top -50,
+        top: element.getBoundingClientRect().top - 50,
         // top: element.getBoundingClientRect().top - 80,
         behavior: 'smooth',
       })
@@ -87,7 +82,11 @@ useSeoMeta({
     <UContainer class="py-14 scroll-smooth md:py-16">
       <div class="max-w-3xl mx-auto">
         <UBreadcrumb
-          class="my-4 px-2 shadow py-1 ring-1 ring-gray-200 dark:ring-gray-800 rounded-lg text-lg  bg-white text-permadi-800 dark:text-permadi-200 dark:bg-gray-900  inset-x-0 text-center z-30"
+        :ui="{
+          active:  'text-primary-950 dark:text-yellow',
+          inactive: ' text-gray-800 dark:text-gray-200',
+        }"
+          class="my-4 px-2 shadow py-1 ring-1 ring-gray-200 dark:ring-gray-800 rounded-lg text-lg  bg-primary-200 text-permadi-800 dark:text-permadi-200  dark:bg-gray-900  inset-x-0 text-center z-30"
           divider=">"
           :links="[{ label: 'Home', to: '/' }, { label: 'Artikel', to: '/artikel' }]"
         />
@@ -123,10 +122,11 @@ useSeoMeta({
               :alt="page.title"
               :title="page.title"
               format="webp"
+              loading="lazy"
               height="500"
               width="500"
-              sizes="sm:200px md:400px lg:800px"
-              :placeholder="[50, 25, 75, 5]"
+              sizes="100vw sm:100vw md:100vw lg:100px"
+              :placeholder="[100, 60, 35, 5]"
               @load="isLoaded = true"
             />
             <USkeleton v-show="!isLoaded" class="w-full h-full object-cover rounded" :ui="{ rounded: 'rounded' }" />
@@ -149,6 +149,9 @@ useSeoMeta({
                   :key="n"
                   :to="`/tags#${tag}`"
                   class="uppercase"
+                  :aria-label="tag"
+                  :title="tag"
+                  rel="noopener noreferrer nofollow"
                 >
                   <UBadge v-if="isLoaded" class="mr-2" size="xs" color="black">
                     {{ tag }}
@@ -198,6 +201,9 @@ useSeoMeta({
                       class="flex flex-col"
                       :class="{ 'ml-1': link.depth === 3 }"
                     >
+                    <ClientOnly>
+
+                    
                       <a
                         class="text-sm my-1 px-2 p-1 line-clamp-1 ring-1 rounded-md ring-gray-200 hover:ring-gray-400 dark:hover:ring-gray-600  dark:ring-gray-800 text-left"
                         :href="`#${link.id}`"
@@ -208,6 +214,7 @@ useSeoMeta({
                           {{ link.text }}
                         </p>
                       </a>
+                    </ClientOnly>
                     </div>
                   </div>
                 </template>
@@ -239,6 +246,7 @@ useSeoMeta({
                         >
                           <UButton
                             :icon="network.icon"
+                            :aria-label="network.network"
                             @click="close"
                           />
                         </ShareNetwork>

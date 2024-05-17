@@ -64,7 +64,7 @@ const isLoaded = ref(false)
         width="500"
         height="500"
         loading="lazy"
-        :placeholder="[50, 25, 75, 5]"
+        :placeholder="[100, 60, 35, 5]"
         sizes="100vw sm:50vw md:400px lg:500px"
         :title="galeri.title"
         format="webp"
@@ -97,6 +97,7 @@ const isLoaded = ref(false)
         <template #header>
           <div class="w-full flex justify-end">
             <UButton
+            aria-label="Tutup Modal"
               color="gray"
               variant="ghost"
               icon="i-heroicons-x-mark-20-solid"
@@ -117,7 +118,7 @@ const isLoaded = ref(false)
             quality="80"
             height="500"
             width="500"
-            :placeholder="[50, 25, 75, 5]"
+            :placeholder="[100, 60, 35, 5]"
             @load="isLoaded = true"
           />
           <USkeleton v-show="!isLoaded" class="w-full rounded-md aspect-video" :ui="{ rounded: 'rounded-md' }" />

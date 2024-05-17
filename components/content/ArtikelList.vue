@@ -71,6 +71,7 @@ const allTags = computed(() => {
         >
           <UButton
             color="gray"
+            :aria-label="selectedTag"
             class="flex-1 justify-between"
           >
             <span class="capitalize">

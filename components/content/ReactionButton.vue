@@ -2,6 +2,7 @@
   <div>
     <UChip :text="reactions.like" size="2xl">
       <UButton
+      aria-label="Beri Reaksi"
         icon="i-ph-thumbs-up-duotone"
         color="gray"
         @click="handleReaction('like')"
