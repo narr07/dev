@@ -31,8 +31,7 @@
     "sharp": "^0.33.3",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2",
-    "vue-social-sharing": "next",
-    "vue-use-active-scroll": "^1.1.1"
+    "vue-social-sharing": "next"
   },
   "devDependencies": {
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",

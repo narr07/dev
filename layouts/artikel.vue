@@ -1,9 +1,6 @@
-<!-- eslint-disable @typescript-eslint/no-explicit-any -->
-<!-- eslint-disable vue/require-v-for-key -->
 <!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <!-- eslint-disable unused-imports/no-unused-vars -->
 <script setup lang="ts">
-import { useActiveScroll } from 'vue-use-active-scroll'
 // Ambil rute saat ini
 const route = useRoute()
 const { page } = useContent()
@@ -12,6 +9,42 @@ const { page } = useContent()
 const contentId = computed(() => {
   return page.value?._id || null
 })
+
+// Debugging untuk memastikan page data tersedia
+watch(page, () => {
+  console.log('Page data:', page.value)
+  if (!page.value) {
+    console.error('Page data is not available')
+  }
+})
+
+const emit = defineEmits(['move'])
+
+const { activeHeadings, updateHeadings } = useScrollspy()
+watch(() => route.path, () => {
+  setTimeout(() => {
+    if (import.meta.client) {
+      updateHeadings([
+        ...document.querySelectorAll('h2'),
+        ...document.querySelectorAll('h3'),
+      ])
+    }
+  }, 200)
+}, { immediate: true })
+
+function scrollToHeading(id: string) {
+  const element = document.getElementById(id)
+  if (element) {
+    window.setTimeout(() => {
+      window.scrollBy({
+        top: element.getBoundingClientRect().top - 80,
+        // top: element.getBoundingClientRect().top - 80,
+        behavior: 'smooth',
+      })
+    }, 100)
+    emit('move', id)
+  }
+}
 
 const networks = [
   { network: 'email', icon: 'i-ph-envelope-duotone' },
@@ -36,33 +69,6 @@ useSeoMeta({
   description: () => page.description,
 
 })
-
-const { toc } = useContent()
-
-const targets = computed(() =>
-  toc.value.links.flatMap(({ id, children = [] }: { id: string, children: any[] }) => [
-    id,
-    ...children.map(({ id }: { id: string }) => id),
-  ]),
-)
-
-const { activeId, setActive } = useActiveScroll(targets)
-const emit = defineEmits(['move'])
-const isSSR = ref(true)
-onMounted(() => (isSSR.value = false))
-function scrollToHeading(id: string) {
-  const element = document.getElementById(id)
-  if (element) {
-    window.setTimeout(() => {
-      window.scrollBy({
-        top: element.getBoundingClientRect().top - 80, // Sesuaikan dengan tinggi header kamu
-        behavior: 'smooth',
-      })
-    }, 100)
-    emit('move', id)
-    setActive(id) // Set active element
-  }
-}
 </script>
 
 <template>
@@ -190,7 +196,7 @@ function scrollToHeading(id: string) {
         >
           <div
             v-if="isLoaded"
-            class="prose mx-auto prose-permadi prose-img:mx-auto prose-img:w-full prose-sm sm:prose-base dark:prose-invert"
+            class="prose mx-auto prose-permadi prose-img:mx-auto prose-img:w-full prose-sm sm:prose-base  dark:prose-invert"
           >
             <slot />
           </div>
@@ -224,23 +230,24 @@ function scrollToHeading(id: string) {
                   <div class="p-3  w-80  ">
                     <h3>Daftar Isi</h3>
                     <div
-                      v-for="(link, idx) in toc.links"
+                      v-for="link of page.body.toc.links"
                       :key="link.id"
                       class="flex flex-col"
                       :class="{ 'ml-1': link.depth === 3 }"
-                      @click="() => { scrollToHeading(link.id); close(); }"
+                      @click="close"
                     >
-                      <NuxtLink
-                        :to="{ hash: `#${link.id}` }"
-                        class="text-sm  my-1 px-2 p-1 line-clamp-1 ring-1 rounded-md ring-gray-200 hover:ring-gray-400 dark:hover:ring-gray-600  dark:ring-gray-800 text-left"
-                        :class="{
-                          'ActiveLink': (isSSR && idx === 0) || activeId === link.id,
-                          'text-primary-800 bg-yellow dark:bg-yellow-700 dark:text-primary-900': activeId === link.id,
-                          'hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300': activeId !== link.id,
-                        }"
-                      >
-                        {{ link.text }}
-                      </NuxtLink>
+                      <ClientOnly>
+                        <a
+                          class="text-sm my-1 px-2 p-1 line-clamp-1 ring-1 rounded-md ring-gray-200 hover:ring-gray-400 dark:hover:ring-gray-600  dark:ring-gray-800 text-left"
+                          :href="`#${link.id}`"
+                          :class="[activeHeadings.includes(link.id) ? 'text-primary-800 bg-yellow dark:bg-yellow-700 dark:text-primary-900' : 'hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300']"
+                          @click.prevent="scrollToHeading(link.id)"
+                        >
+                          <p>
+                            {{ link.text }}
+                          </p>
+                        </a>
+                      </ClientOnly>
                     </div>
                   </div>
                 </template>
