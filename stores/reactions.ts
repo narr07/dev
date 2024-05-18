@@ -1,4 +1,3 @@
-// stores/reactions.ts
 import { defineStore } from 'pinia'
 
 export const useReactionsStore = defineStore('reactions', {
@@ -8,31 +7,24 @@ export const useReactionsStore = defineStore('reactions', {
   }),
   actions: {
     async fetchReactions(contentId: string) {
-      const supabase = useSupabaseClient()
-      console.log('Fetching reactions for content ID:', contentId)
-      const { data, error } = await supabase.rpc('get_reactions', { content_id: contentId })
-      if (error) {
-        console.error('Error fetching reactions:', error)
-        return
+      // Ambil data dari local storage terlebih dahulu
+      const localReactions = localStorage.getItem(`reactions_${contentId}`)
+      if (localReactions) {
+        this.reactions[contentId] = JSON.parse(localReactions)
       }
-      console.log('Fetched reactions:', data)
-      const reactionCounts = { like: 0 }
-      if (data) {
-        (data as any[]).forEach((row) => {
-          if (row.reaction_type === 'like') {
-            reactionCounts.like = row.count
-          }
-        })
-      }
-      this.reactions[contentId] = reactionCounts
-      console.log('Updated reaction state:', this.reactions)
+      else {
+        // Jika tidak ada data di local storage, ambil dari Supabase
+        const { data, error } = await useFetch(`/api/reactions/${contentId}`)
 
-      // Load IP reactions from localStorage
-      const storedIpReactions = localStorage.getItem(`ipReactions_${contentId}`)
-      if (storedIpReactions) {
-        this.ipReactions[contentId] = JSON.parse(storedIpReactions)
+        if (error) {
+          console.error('Error fetching reactions:', error)
+          return
+        }
+        this.reactions[contentId] = data.value as { like: number }
+        // this.reactions[contentId] = data.value
       }
     },
+
     async addReaction(contentId: string, reactionType: 'like') {
       const toast = useToast()
       const maxReactions = 10
@@ -51,7 +43,7 @@ export const useReactionsStore = defineStore('reactions', {
         this.ipReactions[contentId][ipAddress] = { count: 0, lastLiked: 0 }
       }
 
-      if (ipData && ipData.count >= maxReactions && (currentTime - ipData.lastLiked) < cooldownTime) {
+      if (ipData && ipData.count >= maxReactions && currentTime - ipData.lastLiked < cooldownTime) {
         toast.add({
           title: 'Maximum Reactions Reached',
           description: `You have reached the maximum number of reactions (${maxReactions}) for this content. Please try again later.`,
@@ -60,7 +52,7 @@ export const useReactionsStore = defineStore('reactions', {
         return
       }
 
-      if (ipData && (currentTime - ipData.lastLiked) >= cooldownTime) {
+      if (ipData && currentTime - ipData.lastLiked >= cooldownTime) {
         ipData.count = 0 // Reset count after cooldown
       }
 
@@ -68,50 +60,51 @@ export const useReactionsStore = defineStore('reactions', {
         this.reactions[contentId] = { like: 0 }
       }
       this.reactions[contentId][reactionType]++
-      console.log('Local reactions updated:', this.reactions[contentId])
 
       this.ipReactions[contentId][ipAddress].count++
       this.ipReactions[contentId][ipAddress].lastLiked = currentTime
       localStorage.setItem(`ipReactions_${contentId}`, JSON.stringify(this.ipReactions[contentId]))
 
-      // Simpan jumlah reaksi lokal untuk sinkronisasi nanti
-      const reactionKey = `reactions_${contentId}_${reactionType}`
-      const currentReactions = parseInt(localStorage.getItem(reactionKey) || '0', 10)
-      localStorage.setItem(reactionKey, (currentReactions + 1).toString())
-
-      // Sinkronkan setiap reaksi dengan Supabase
-      await this.syncReactions(contentId)
+      // Simpan reaksi ke local storage
+      localStorage.setItem(`reactions_${contentId}`, JSON.stringify(this.reactions[contentId]))
     },
+
     async syncReactions(contentId: string) {
       const supabase = useSupabaseClient()
+      const localReactions = localStorage.getItem(`reactions_${contentId}`)
 
-      const reactionKey = `reactions_${contentId}_like`
-      const currentReactions = parseInt(localStorage.getItem(reactionKey) || '0', 10)
+      if (localReactions) {
+        const reactions = JSON.parse(localReactions)
+        const { like } = reactions
 
-      if (currentReactions > 0) {
-        const ipAddress = await getIpAddress()
-        console.log('IP Address:', ipAddress)
+        if (like > 0) {
+          const ipAddress = await getIpAddress()
+          try {
+            const { error } = await supabase
+              .from('reactions')
+              .insert([
+                { content_id: contentId, reaction_type: 'like', ip_address: ipAddress, count: like },
+              ])
 
-        const { error } = await supabase
-          .from('reactions')
-          .insert([
-            { content_id: contentId, reaction_type: 'like', ip_address: ipAddress, count: currentReactions },
-          ])
+            if (error) {
+              console.error('Error syncing reactions:', error)
+              // Tangani error, misalnya tampilkan pesan error ke pengguna
+              return
+            }
 
-        if (error) {
-          console.error('Error syncing reactions:', error)
-          return
+            console.log('Reactions synced successfully')
+
+            // Hapus data dari local storage setelah sinkronisasi
+            localStorage.removeItem(`reactions_${contentId}`)
+          }
+          catch (error) {
+            console.error('Error syncing reactions:', error)
+            // Tangani error, misalnya tampilkan pesan error ke pengguna
+          }
         }
-        console.log('Reactions synced successfully')
-
-        // Clear the local storage after syncing
-        localStorage.removeItem(reactionKey)
-
-        // Fetch reactions again to refresh the state
-        await this.fetchReactions(contentId)
       }
-    }
-  }
+    },
+  },
 })
 
 async function getIpAddress(): Promise<string> {
@@ -119,7 +112,8 @@ async function getIpAddress(): Promise<string> {
     const response = await fetch('https://api.ipify.org?format=json')
     const data = await response.json()
     return data.ip
-  } catch (error) {
+  }
+  catch (error) {
     console.error('Error fetching IP address:', error)
     return ''
   }

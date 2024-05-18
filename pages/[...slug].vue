@@ -1,4 +1,12 @@
 <script lang="ts" setup>
+const { data: info } = await useAsyncData(() =>
+  globalThis.$fetch('/api/info', {
+    headers: useRequestHeaders(['x-forwarded-for', 'x-vercel-ip-city']),
+  }),
+)
+
+const generatedAt = useState(() => new Date().toISOString())
+
 useHead({
   htmlAttrs: {
     lang: 'id',
@@ -17,6 +25,16 @@ useHead({
 <template>
   <div>
     <NuxtLayout>
+      <div>
+        Your IP address: <span>{{ info?.ip }}</span>
+        <div>
+          Your City: <span>{{ info?.city }}</span>
+        </div>
+
+        <div>
+          Generated at: <span>{{ generatedAt }}</span>
+        </div>
+      </div>
       <ContentDoc />
     </NuxtLayout>
   </div>
